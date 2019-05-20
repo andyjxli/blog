@@ -8,5 +8,5 @@ Fyber bolg
 
 > custom hooks
 
-- [useFetch]()
+- [useFetch](https://github.com/fyber-LJX/blog/issues/2)
 - [useIntersectionObserver](https://github.com/fyber-LJX/blog/issues/1)
