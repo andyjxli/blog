@@ -2,9 +2,18 @@
   "name": "blog",
   "version": "1.0.0",
   "description": "Fyber bolg",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "directories": {
+    "lib": "lib"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "tsc -w",
+    "build:es": "rm -rf es && tsc --module es2015 --outDir es",
+    "build:cjs": "rm -rf lib && tsc --module commonjs --outDir lib",
+    "build": "npm run build:es && npm run build:cjs",
+    "prepublishOnly": "yarn && yarn build",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -17,6 +26,8 @@
   },
   "homepage": "https://github.com/fyber-LJX/blog#readme",
   "devDependencies": {
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.3.3",
     "eslint-config-airbnb-base": "^13.1.0"
   }
 }

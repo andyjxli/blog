@@ -1,0 +1,66 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": ["airbnb-base"],
+  "parser": "typescript-eslint-parser",
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "rules": {
+    "adjacent-overload-signatures": true,
+    "ban-types": {
+      "options": [
+        ["Object", "Avoid using the `Object` type. Did you mean `object`?"],
+        [
+          "Function",
+          "Avoid using the `Function` type. Prefer a specific function type, like `() => void`."
+        ],
+        ["Boolean", "Avoid using the `Boolean` type. Did you mean `boolean`?"],
+        ["Number", "Avoid using the `Number` type. Did you mean `number`?"],
+        ["String", "Avoid using the `String` type. Did you mean `string`?"],
+        ["Symbol", "Avoid using the `Symbol` type. Did you mean `symbol`?"]
+      ]
+    },
+    "class-name": true,
+    "eofline": true,
+    "forin": true,
+    "interface-over-type-literal": true,
+    "new-parens": 1,
+    "no-angle-bracket-type-assertion": true,
+    "no-arg": true,
+    "no-conditional-assignment": true,
+    "no-consecutive-blank-lines": true,
+    "no-construct": true,
+    "no-duplicate-super": true,
+    "no-eval": 1,
+    "no-internal-module": true,
+    "no-invalid-this": 0,
+    "no-string-literal": true,
+    "no-string-throw": true,
+    "no-switch-case-fall-through": false,
+    "no-trailing-whitespace": true,
+    "no-unsafe-finally": true,
+    "no-use-before-declare": false,
+    "no-var-keyword": true,
+    "no-var-requires": true,
+    "radix": 1,
+    "use-isnan": 1,
+    "variable-name": {
+      "options": ["ban-keywords"]
+    },
+    "import-blacklist": [
+      true,
+      { "@msfe/m-base-platform": ["IS_TEST"] },
+      { "@msfe/m-platform": ["IS_TEST"] }
+    ],
+    "jsx-no-setstate-callback": true,
+    "react-hooks-nesting": true
+  }
+}
