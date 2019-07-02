@@ -8,8 +8,8 @@ Fyber bolg
 
 > custom hooks
 
-- [useFetch](https://github.com/fyber-LJX/blog/issues/2)
-- [useIntersectionObserver](https://github.com/fyber-LJX/blog/issues/1)
+- [useFetch](https://github.com/fyber-LJX/blog/blob/master/docs/React/useFetch.md)
+- [useIntersectionObserver](https://github.com/fyber-LJX/blog/blob/master/docs/React/useIntersectionObserver.md)
 
 > 项目总结
 
