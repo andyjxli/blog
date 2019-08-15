@@ -1,4 +1,5 @@
 import actions from "./utils/actionTypes"
+import { Action } from "./utils/interface"
 
 export default function createReducer(
   reducer: Function,
@@ -72,7 +73,7 @@ export default function createReducer(
     }
   }
 
-  function dispatch(action: { type: symbol | string; [props: string]: any }) {
+  function dispatch(action: Action) {
     if (typeof action !== "object" || action === null) {
       throw new Error("Expected the action to be object")
     }
