@@ -15,6 +15,7 @@ export default function applyMiddleware(...middlewares: Array<Function>) {
     }
 
     const chain = middlewares.map(middleware => middleware(middlewareAPI))
+    // 相当于重写 dispatch。
     dispatch = compose(...chain)(store.dispatch)
 
     return {
