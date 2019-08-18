@@ -32,7 +32,7 @@
     "eofline": true,
     "forin": true,
     "interface-over-type-literal": true,
-    "new-parens": 1,
+    "new-parens": 0,
     "no-angle-bracket-type-assertion": true,
     "no-arg": true,
     "no-conditional-assignment": true,
