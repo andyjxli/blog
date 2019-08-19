@@ -1,105 +1,188 @@
-function CPromise(executor) {
-    const _self = this;
+try {
+  module.exports = FyberPromise
+} catch (e) {}
 
-    // status 当前执行状态 0 - pending  1 - fulfilled 2 - rejected
-    this.status = 0;
-    // value 返回的信息
-    this.value = null;
-    // 事件队列数组
-    this.deferreds = [];
+function FyberPromise(executor) {
+  var self = this
 
-    this.then = function(onResolved, onRejected) {
-    
-        return new CPromise((resolve, reject) => {
-            handle({
-                onResolved: onResolved || null,
-                onRejected: onRejected || null,
-                resolve: resolve,
-                reject: reject
-            })
-        }) 
+  self.status = "pending"
+  self.onResolvedCallback = []
+  self.onRejectedCallback = []
+
+  function resolve(value) {
+    if (value instanceof FyberPromise) {
+      return value.then(resolve, reject)
     }
-    
-
-    function resolve(value) {
-        // 当状态已经发生改变
-        if (_self.status !== 0) return;
-
-        // 当前值不能是自己
-        if (value === _self) {
-            return reject(new TypeError('A promise cannot be resolve with itself.'));
+    setTimeout(function() {
+      // 异步执行所有的回调函数
+      if (self.status === "pending") {
+        self.status = "resolved"
+        self.data = value
+        for (var i = 0; i < self.onResolvedCallback.length; i++) {
+          self.onResolvedCallback[i](value)
         }
+      }
+    })
+  }
 
-        console.log(value);
-
-        if(value && typeof value.then === 'function') {
-            value.then(resolve, reject);
-            return;
+  function reject(reason) {
+    setTimeout(function() {
+      // 异步执行所有的回调函数
+      if (self.status === "pending") {
+        self.status = "rejected"
+        self.data = reason
+        for (var i = 0; i < self.onRejectedCallback.length; i++) {
+          self.onRejectedCallback[i](reason)
         }
+      }
+    })
+  }
 
-        // 当回调函数依然是promise时
-        if (value instanceof CPromise && value.then === this.then) {
-            const deferreds = _self.deferreds;
-
-            handle(deferreds, value);
-            return ;
-        }
-
-        _self.status = 1;
-        _self.value = value;
-
-        setTimeout(() => {
-
-            _self.deferreds.forEach((deferred) => {
-                handle(deferred);
-            })
-
-        })
-    }
-
-    function reject(reason) {
-
-        if (_self.status !== 0) return;
-
-        _self.status = 2;
-        _self.value = reason;
-
-        setTimeout(() => {   
-            _self.deferreds.forEach((deferred) => {
-                handle(deferred);
-            })
-        })
-    }
-
-    function handle(handler) {
-        if (_self.status === 0) {
-            _self.deferreds.push(handler);
-            return;
-        }
-        
-    
-        let cb = _self.status === 1 ? handler.onResolved : handler.onRejected;
-    
-        if (cb === null) {
-            cb = _self.status === 1 ? handler.resolve : handler.reject;
-    
-            cb(_self.value)
-            return;
-        }
-    
-        const result = cb(_self.value);
-        handler.resolve(result);
-        
-        // if (promise.status === 1) {
-        //     deferred.resolve(result);
-        // } else {
-        //     deferred.reject(result);
-        // }
-    
-    }
-
-    executor(resolve, reject);
-
+  try {
+    executor(resolve, reject)
+  } catch (reason) {
+    reject(reason)
+  }
 }
 
-export { CPromise };
+function resolveFyberPromise(Fyberpromise2, x, resolve, reject) {
+  var then
+  var thenCalledOrThrow = false
+
+  if (Fyberpromise2 === x) {
+    return reject(new TypeError("Chaining cycle detected for Fyberpromise!"))
+  }
+
+  if (x instanceof FyberPromise) {
+    if (x.status === "pending") {
+      //because x could resolved by a FyberPromise Object
+      x.then(function(v) {
+        resolveFyberPromise(Fyberpromise2, v, resolve, reject)
+      }, reject)
+    } else {
+      //but if it is resolved, it will never resolved by a FyberPromise Object but a static value;
+      x.then(resolve, reject)
+    }
+    return
+  }
+
+  if (x !== null && (typeof x === "object" || typeof x === "function")) {
+    try {
+      then = x.then //because x.then could be a getter
+      if (typeof then === "function") {
+        then.call(
+          x,
+          function rs(y) {
+            if (thenCalledOrThrow) return
+            thenCalledOrThrow = true
+            return resolveFyberPromise(Fyberpromise2, y, resolve, reject)
+          },
+          function rj(r) {
+            if (thenCalledOrThrow) return
+            thenCalledOrThrow = true
+            return reject(r)
+          }
+        )
+      } else {
+        resolve(x)
+      }
+    } catch (e) {
+      if (thenCalledOrThrow) return
+      thenCalledOrThrow = true
+      return reject(e)
+    }
+  } else {
+    resolve(x)
+  }
+}
+
+FyberPromise.prototype.then = function(onResolved, onRejected) {
+  var self = this
+  var Fyberpromise2
+  onResolved =
+    typeof onResolved === "function"
+      ? onResolved
+      : function(v) {
+          return v
+        }
+  onRejected =
+    typeof onRejected === "function"
+      ? onRejected
+      : function(r) {
+          throw r
+        }
+
+  if (self.status === "resolved") {
+    return (Fyberpromise2 = new FyberPromise(function(resolve, reject) {
+      setTimeout(function() {
+        // 异步执行onResolved
+        try {
+          var x = onResolved(self.data)
+          resolveFyberPromise(Fyberpromise2, x, resolve, reject)
+        } catch (reason) {
+          reject(reason)
+        }
+      })
+    }))
+  }
+
+  if (self.status === "rejected") {
+    return (Fyberpromise2 = new FyberPromise(function(resolve, reject) {
+      setTimeout(function() {
+        // 异步执行onRejected
+        try {
+          var x = onRejected(self.data)
+          resolveFyberPromise(Fyberpromise2, x, resolve, reject)
+        } catch (reason) {
+          reject(reason)
+        }
+      })
+    }))
+  }
+
+  if (self.status === "pending") {
+    // 这里之所以没有异步执行，是因为这些函数必然会被resolve或reject调用，而resolve或reject函数里的内容已是异步执行，构造函数里的定义
+    return (Fyberpromise2 = new FyberPromise(function(resolve, reject) {
+      self.onResolvedCallback.push(function(value) {
+        try {
+          var x = onResolved(value)
+          resolveFyberPromise(Fyberpromise2, x, resolve, reject)
+        } catch (r) {
+          reject(r)
+        }
+      })
+
+      self.onRejectedCallback.push(function(reason) {
+        try {
+          var x = onRejected(reason)
+          resolveFyberPromise(Fyberpromise2, x, resolve, reject)
+        } catch (r) {
+          reject(r)
+        }
+      })
+    }))
+  }
+}
+
+FyberPromise.prototype.catch = function(onRejected) {
+  return this.then(null, onRejected)
+}
+
+FyberPromise.deferred = FyberPromise.defer = function() {
+  var dfd = {}
+  dfd.Fyberpromise = new FyberPromise(function(resolve, reject) {
+    dfd.resolve = resolve
+    dfd.reject = reject
+  })
+  return dfd
+}
+
+const pros = new FyberPromise((resolve, reject) => {
+  setTimeout(() => resolve(1), 200)
+})
+pros
+  .then(value => {
+    console.log(value, "one")
+    return 2
+  })
+  .then(value => console.log(value, "two"))
