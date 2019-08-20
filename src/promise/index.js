@@ -21,7 +21,7 @@ function FyberPromise(executor) {
   this.deffereds = []
   this.status = PENDING
 
-  const resolve = value => {
+  function resolve(value) {
     if (this.status !== PENDING) return
 
     // promise 和 value 指向同一对象
@@ -32,14 +32,14 @@ function FyberPromise(executor) {
 
     // 如果 value 为 Promise，则使 promise 接受 value 的状态
     // 对应 Promise A+ 规范 2.3.2
-    if (value && value instanceof Promise && value.then === this.then) {
+    if (value && value instanceof FyberPromise && value.then === this.then) {
       if (value.status === PENDING) {
         value.deffereds.push(...this.deffereds)
       } else if (this.deffereds.length > 0) {
-        for (var i = 0; i < this.deferreds.length; i++) {
-          handleResolved(value, deferreds[i])
+        for (var i = 0; i < this.deffereds.length; i++) {
+          handleResolved(value, this.deffereds[i])
         }
-        value.deferreds = []
+        value.deffereds = []
       }
       return
     }
@@ -74,11 +74,12 @@ function FyberPromise(executor) {
     this.status = FULFILLED
     this.value = value
     this.deffereds.forEach(item => handleResolved(this, item))
-    this.deferreds = []
+    this.deffereds = []
   }
-  const reject = reason => {
-    if (value instanceof FyberPromise) {
-      return value.then(resolve, reject)
+
+  function reject(reason) {
+    if (reason instanceof FyberPromise) {
+      return reason.then(resolve, reject)
     }
     if (this.status !== PENDING) return
 
@@ -90,18 +91,23 @@ function FyberPromise(executor) {
   }
 
   function handleResolved(promise, deferred) {
-    console.log(promise)
     asyncFn(function() {
       const cb =
-        promise.status === FULFILLED ? promise.onFulfilled : promise.onRejected
-      const res = cb(promise.value)
-
-      resolve.bind(deferred.promise, res)
+        promise.status === FULFILLED
+          ? deferred.onFulfilled
+          : deferred.onRejected
+      try {
+        // 箭头函数call无效，会绑定在外部作用域
+        const res = cb(promise.value)
+        resolve.call(deferred.promise, res)
+      } catch (_err) {
+        reject.call(deferred.promise, _err)
+      }
     })
   }
 
   try {
-    executor(resolve, reject)
+    executor(resolve.bind(this), reject.bind(this))
   } catch (e) {
     reject(e)
   }
@@ -122,7 +128,6 @@ FyberPromise.prototype.then = function(onFulfilled, onRejected) {
   const deffereds = new Handler(onFulfilled, onRejected, newPromise)
   if (this.status === PENDING) {
     this.deffereds.push(deffereds)
-    newPromise.deffereds = this.deffereds
   }
   if (this.status === FULFILLED) {
     this.value = onFulfilled(this.value)
@@ -139,6 +144,9 @@ const pros = new FyberPromise((resolve, reject) => {
 pros
   .then(value => {
     console.log(value, "one")
-    return 2
+    return new FyberPromise(r => r(3))
   })
-  .then(value => console.log(value, "two"))
+  .then(
+    value => console.log(value, "two"),
+    reason => console.log(reason, "two reason")
+  )
