@@ -78,10 +78,11 @@ function FyberPromise(executor) {
   }
 
   function reject(reason) {
+    if (this.status !== PENDING) return
+
     if (reason instanceof FyberPromise) {
       return reason.then(resolve, reject)
     }
-    if (this.status !== PENDING) return
 
     this.value = reason
     this.status = REJECTED
@@ -136,6 +137,12 @@ FyberPromise.prototype.then = function(onFulfilled, onRejected) {
     onRejected(this.reason)
   }
   return newPromise
+}
+
+FyberPromise.prototype.catch = function(callback) {
+  if (!isFunction(callback)) return
+
+  callback(this.value)
 }
 
 const pros = new FyberPromise((resolve, reject) => {

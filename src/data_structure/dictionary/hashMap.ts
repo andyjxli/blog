@@ -1,5 +1,5 @@
 import { fyberToString, hashCode } from "../../share"
-import { isUnvalid } from "../../share/number"
+import { isUnvalid } from "../../share/type"
 import ValuePair from "./valuePair"
 
 interface HashMap {
