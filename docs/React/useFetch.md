@@ -2,16 +2,17 @@
 
 ## 前言
 
-> 自 React Hooks 16.8.0 后带来了 React hooks 这一特性。这一特性在没有破坏性的更新下为我们带来了更加舒爽的开发方式。过去我们常常因providers，consumers，高阶组件，render props 等形成“嵌套地狱”。尽管 Class Component 在某种程度上为我们提供了更方便的写法以及生命周期，但同时也带来了一些不好的地方。例如难以理解的 class 内部原理、难以测试的声明周期。而 React Hooks 为我们提供了一种 Function Component 的写法，让我们用更少的代码写出更加优雅、易懂的代码。本文不做 React Hooks API的讲述，如有不懂，请移步 [Hooks 简介](https://react.docschina.org/docs/hooks-intro.html)
+> 自 React Hooks 16.8.0 后带来了 React hooks 这一特性。这一特性在没有破坏性的更新下为我们带来了更加舒爽的开发方式。过去我们常常因 providers，consumers，高阶组件，render props 等形成“嵌套地狱”。尽管 Class Component 在某种程度上为我们提供了更方便的写法以及生命周期，但同时也带来了一些不好的地方。例如难以理解的 class 内部原理、难以测试的声明周期。而 React Hooks 为我们提供了一种 Function Component 的写法，让我们用更少的代码写出更加优雅、易懂的代码。本文不做 React Hooks API 的讲述，如有不懂，请移步 [Hooks 简介](https://react.docschina.org/docs/hooks-intro.html)
 
 ## 发送服务端请求所面临的问题
 
-#### 1. try / catch问题
-在开发代码时，我们发送后端请求后接受到的数据，需要使用try/catch来捕获错误。而每次捕获出的错误可能需要打印出来以检测bug。这样我们每次都会写同样的代码，这样在开发过程中很不友好。同时有些同学不习惯使用 try/catch 来捕获错误，这就可能造成不可预计的问题。
+#### 1. try / catch 问题
+
+在开发代码时，我们发送后端请求后接受到的数据，需要使用 try/catch 来捕获错误。而每次捕获出的错误可能需要打印出来以检测 bug。这样我们每次都会写同样的代码，这样在开发过程中很不友好。同时有些同学不习惯使用 try/catch 来捕获错误，这就可能造成不可预计的问题。
 
 ```javascript
-import React, { useCallback, useReducer, useEffect } from 'react'
-import { TimeNumberType, PageType } from 'common/constant/interface'
+import React, { useCallback, useReducer, useEffect } from "react"
+import { TimeNumberType, PageType } from "common/constant/interface"
 
 type ParamsType = PageType & TimeNumberType
 
@@ -19,7 +20,8 @@ const reducer = (state: ParamsType, action: Actions) => {
   const { payload } = action
   return { ...state, ...payload }
 }
-const postListData = (params: ParamsType) => post('/network/api/test/getlist', params)
+const postListData = (params: ParamsType) =>
+  post("/network/api/test/getlist", params)
 const initialParams = {
   pageSize: 10,
   pageNumber: 1,
@@ -45,25 +47,27 @@ const ListComponent = () => {
 }
 ```
 
-demo中展示了在业务场景中发送请求的场景，当发送请求多了之后我们会每次手动try / catch，虽然不是大问题，但是重复代码写多了会觉得难受...。下面看第二个功能。
+demo 中展示了在业务场景中发送请求的场景，当发送请求多了之后我们会每次手动 try / catch，虽然不是大问题，但是重复代码写多了会觉得难受...。下面看第二个功能。
 
 #### 2. 请求状态
-在实际的业务场景中，我们向后端发送请求时，往往伴随着用户点击多次，但是只能发送一次请求的问题，这时我们需要手动加锁。并且在很多场景中我们需要知道请求状态来为页面设置loading。例如：
+
+在实际的业务场景中，我们向后端发送请求时，往往伴随着用户点击多次，但是只能发送一次请求的问题，这时我们需要手动加锁。并且在很多场景中我们需要知道请求状态来为页面设置 loading。例如：
 
 ```javascript
-import React, { useCallback, useReducer, useEffect } from 'react'
-import { TimeNumberType, PageType } from 'common/constant/interface'
-import { DateRangePicker, Table } from 'UI'
+import React, { useCallback, useReducer, useEffect } from "react"
+import { TimeNumberType, PageType } from "common/constant/interface"
+import { DateRangePicker, Table } from "UI"
 
 type ParamsType = PageType & TimeNumberType
 
-const TIME = Symbol('time')
-const PAGE = Symbol('page')
+const TIME = Symbol("time")
+const PAGE = Symbol("page")
 const reducer = (state: ParamsType, action: Actions) => {
   const { payload } = action
   return { ...state, ...payload }
 }
-const postListData = (params: ParamsType) => post('/network/api/test/getlist', params)
+const postListData = (params: ParamsType) =>
+  post("/network/api/test/getlist", params)
 const initialParams = {
   pageSize: 10,
   pageNumber: 1,
@@ -75,7 +79,7 @@ const ListComponent = () => {
   const [params, dispatch] = useReducer(reducer, initialState)
   const [loading, setLoading] = useState(false)
   const [list, setList] = useState({})
-  
+
   const getList = async () => {
     // loading is true
     if (loading) return
@@ -95,12 +99,10 @@ const ListComponent = () => {
   useEffect(() => {
     getList()
   }, [params])
-  
+
   return (
-      <div style={{ marginBottom: '20px' }}>
-        <DateRangePicker
-          onChange={handleDateChange}
-        />
+    <div style={{ marginBottom: "20px" }}>
+      <DateRangePicker onChange={handleDateChange} />
       <Table
         onPageChange={(pageNumber: number) => {
           dispatch({ payload: { pageNumber }, type: PAGE })
@@ -114,19 +116,21 @@ const ListComponent = () => {
 }
 ```
 
-demo中展示了日期组件以及包含有分页器的 Table组件，当日期发生变更，或者分页器发生变更时，我们需要dispatch来更新请求参数，从而发送请求。在发送请求时如果正在请求，则忽略，而不在请求时需要手动加锁，来防止多次请求。
+demo 中展示了日期组件以及包含有分页器的 Table 组件，当日期发生变更，或者分页器发生变更时，我们需要 dispatch 来更新请求参数，从而发送请求。在发送请求时如果正在请求，则忽略，而不在请求时需要手动加锁，来防止多次请求。
 <br>
-同时Table需要根据请求状态来判断是否需要展示loading。
+同时 Table 需要根据请求状态来判断是否需要展示 loading。
 
 ## 解决问题
-基于以上的问题，我们能否通过 Hooks 来封装一个 custom hooks来解决问题。
+
+基于以上的问题，我们能否通过 Hooks 来封装一个 custom hooks 来解决问题。
 
 #### 1. 明确目标
+
 > custom hooks 解决的问题
 
-- 解决每个函数都要统一写try/catch的流程
+- 解决每个函数都要统一写 try/catch 的流程
 - 解决发送请求需要手动加锁防止多次重复请求的痛点
-- 不需要在手动useState loading，直接获取loading值
+- 不需要在手动 useState loading，直接获取 loading 值
 
 所以我们需要在 custom hooks 中发送请求、暴露出请求后的值、暴露 loading 状态、以及用户可能需要多次请求，这就需要暴露一个勾子。在发生请求错误时可能需要做某些操作，所以还需要暴露在错误时回调的勾子函数。
 
@@ -137,10 +141,12 @@ demo中展示了日期组件以及包含有分页器的 Table组件，当日期�
 
 > 支持泛型
 
-在TS中，开发者希望能够自定义请求的参数类型，以及请求结果的类型
+在 TS 中，开发者希望能够自定义请求的参数类型，以及请求结果的类型
 
 #### 2. 定义函数
+
 > useFetch 函数
+
 ```javascript
 import { useState, useEffect } from "react";
 
@@ -211,13 +217,14 @@ export default useFetch;
 
 #### 3. 如何使用
 
-根据最初的demo我们改造一下代码
+根据最初的 demo 我们改造一下代码
+
 ```javascript
 import React, { useCallback, useReducer, useEffect } from 'react'
 import { TimeNumberType, PageType } from 'common/constant/interface'
 import { DateRangePicker, Table } from 'UI'
 // 导入 useFetch
-import { useFetch } from 'custom-hooks' 
+import { useFetch } from 'custom-hooks'
 
 type ParamsType = PageType & TimeNumberType
 type ListInfo = {list: Array<any>, total: number}
@@ -238,7 +245,7 @@ const initialParams = {
 
 const ListComponent = () => {
   const [params, dispatch] = useReducer(reducer, initialState)
-  
+
   const [list, loading, getList] = useFetch<ListInfo, ParamsType>(
     getWithDraw,
     state,
@@ -249,7 +256,7 @@ const ListComponent = () => {
   useEffect(() => {
     getList()
   }, [params])
-  
+
   return (
       <div style={{ marginBottom: '20px' }}>
         <DateRangePicker
@@ -274,7 +281,9 @@ const ListComponent = () => {
 同时 useFetch的第3个参数当传入的为 null 时，可以模拟请求发送错误，这样我们可以在开发时做兜底方案。
 
 #### 4. 也许并不想要那么多值。
+
 也许有些请求不需要关注请求状态
+
 ```javascript
   // 解构赋值、空着就好
   const [list, , getList] = useFetch<ListInfo, ParamsType>(
@@ -285,8 +294,6 @@ const ListComponent = () => {
   )
 ```
 
-
 本文完~
 
 如有问题，欢迎指出~
-
