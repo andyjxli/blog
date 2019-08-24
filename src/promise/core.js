@@ -129,6 +129,49 @@ Fromise.prototype.catch = function(cb) {
   return this.then(null, cb)
 }
 
+Fromise.prototype.finally = function(cb) {
+  return this.then(
+    value => Fromise.resolve(cb()).then(() => value),
+    reason =>
+      Fromise.resolve(cb()).then(() => {
+        throw reason
+      })
+  )
+}
+
+Fromise.race = function(values) {
+  return new Fromise((resolve, reject) => {
+    values.forEach(value =>
+      value.then(val => resolve(val), reason => reject(reason))
+    )
+  })
+}
+
+Fromise.all = function(values) {
+  return new Fromise((resolve, reject) => {
+    const len = values.length
+    const result = []
+    if (len === 0) return resolve([])
+    values.map((value, index) =>
+      value.then(
+        val => {
+          result[index] = val
+          if (result.length === len) resolve(result)
+        },
+        reason => reject(reason)
+      )
+    )
+  })
+}
+
+Fromise.resolve = function(value) {
+  return new Fromise(resolve => resolve(value))
+}
+
+Fromise.reject = function(value) {
+  return new Fromise((_, reject) => reject(value))
+}
+
 const pros = new Fromise((resolve, reject) => {
   setTimeout(() => resolve(1), 200)
 })
@@ -141,5 +184,30 @@ pros
     value => console.log(value, "two"),
     reason => console.log(reason, "two reason")
   )
+  .finally(() => console.log("finally"))
 
+const race = Fromise.race([
+  new Fromise(resolve => {
+    setTimeout(() => resolve(3000), 200)
+  }),
+  new Fromise(reject => {
+    setTimeout(() => reject(3001), 1000)
+  })
+])
+
+race.then(value => console.log(value), reason => console.log(reason))
+
+const all = Fromise.all([
+  new Fromise(resolve => {
+    setTimeout(() => resolve(3000), 200)
+  }),
+  new Fromise((_, reject) => {
+    setTimeout(() => _(3001), 1000)
+  })
+])
+
+all.then(
+  value => console.log(value, "all"),
+  reason => console.log(reason, "all")
+)
 // export default Fromise
