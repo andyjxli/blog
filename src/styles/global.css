@@ -1,0 +1,34 @@
+.body {
+  --pink: #ffa7c4;
+  color: hsla(0, 0%, 0%, 0.9);
+  font-family: "Merriweather", "Georgia", serif;
+  font-weight: 400;
+  word-wrap: break-word;
+  font-kerning: normal;
+  -moz-font-feature-settings: "kern", "liga", "clig", "calt";
+  -ms-font-feature-settings: "kern", "liga", "clig", "calt";
+  -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
+  font-feature-settings: "kern", "liga", "clig", "calt";
+}
+
+.body.light {
+  --bg: #fff;
+  --text-normal: #222;
+  --text-title: #222;
+  --text-link: #d23669;
+  --hr: rgba(0, 0, 0, 0.2);
+  --inlineCode-bg: rgba(255, 229, 100, 0.2);
+  --inlineCode-text: #1a1a1a;
+}
+
+.body.dark {
+  -webkit-font-smoothing: antialiased;
+  --bg: #282c35;
+  --header: #fff;
+  --textNormal: hsla(0, 0%, 100%, 0.88);
+  --textTitle: #fff;
+  --textLink: var(--pink);
+  --hr: hsla(0, 0%, 100%, 0.2);
+  --inlineCode-bg: #373c49;
+  --inlineCode-text: #e6e6e6;
+}
