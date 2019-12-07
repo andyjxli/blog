@@ -1,0 +1,18 @@
+.article__header {
+  margin-bottom: 30px;
+}
+.article__header h1 {
+  margin-bottom: 10px;
+}
+
+.article__info {
+  display: flex;
+  font-size: 14px;
+}
+.article__info span:after {
+  content: "·";
+  margin: 5px;
+}
+.article__info span:last-child:after {
+  content: "";
+}

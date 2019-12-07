@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
-import "./layout.css"
+import "./../styles/index.css"
 import "./index.css"
 
 const Layout = ({ children }) => {

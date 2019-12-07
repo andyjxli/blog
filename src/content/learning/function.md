@@ -7,7 +7,7 @@ date: 2019-03-10T10:00:00.000Z
 draft: false
 tags:
   - Time
-category: frontend
+category: { zh_name: "前端", en_name: "frontend" }
 ---
 
 # 工程知识的学习方法 - PDD 盛杞 201907

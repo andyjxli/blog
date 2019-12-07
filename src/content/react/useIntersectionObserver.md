@@ -7,10 +7,8 @@ date: 2019-03-10T10:00:00.000Z
 draft: false
 tags:
   - Time
-category: frontend
+category: { zh_name: "前端", en_name: "frontend" }
 ---
-
-<center><h1>useIntersectionObserver</h1></center>
 
 ## 前言
 
