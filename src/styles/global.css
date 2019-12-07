@@ -1,13 +1,14 @@
 body {
   --pink: #ffa7c4;
   background-color: var(--bg);
+  color: var(--textNormal);
 }
 
 body.light {
   --bg: #fff;
   /* --header: var(--pink); */
-  --textNormal: #222;
-  --textTitle: #222;
+  --textNormal: #111;
+  --textTitle: #111;
   --textLink: #f65c78;
   --hr: rgba(0, 0, 0, 0.2);
   --inlineCode-bg: rgba(255, 229, 100, 0.2);

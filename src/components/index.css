@@ -1,10 +1,7 @@
-.layout__header {
-}
-
 .layout__container {
   margin-left: auto;
   margin-right: auto;
   max-width: 42rem;
   padding: 2.625rem 1.3125rem;
-  color: var(--text-normal);
+  color: var(--textNormal);
 }
