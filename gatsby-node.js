@@ -36,7 +36,7 @@ exports.createPages = async ({ actions, graphql }) => {
       const { frontmatter } = node
       const { title, category } = frontmatter
       createPage({
-        path: `/${category.en_name}/${title.replace(/\s/g, "-")}`,
+        path: `/${category.en_name}/${title.replace(/\s/g, "-")}/`,
         component: require.resolve(`./src/templates/article.tsx`),
         context: { ...node },
       })
