@@ -29,9 +29,13 @@
     "yarn": "^1.21.0"
   },
   "devDependencies": {
+    "@types/jest": "^24.0.23",
     "eslint-config-airbnb-base": "^14.0.0",
     "gh-pages": "^2.1.1",
-    "prettier": "^1.19.1"
+    "jest": "^24.9.0",
+    "prettier": "^1.19.1",
+    "ts-jest": "^24.2.0",
+    "typescript": "^3.7.3"
   },
   "keywords": [
     "gatsby"
@@ -44,7 +48,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
