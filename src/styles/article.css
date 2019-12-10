@@ -1,12 +1,12 @@
 @import url(https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.207/distr/fira_code.css);
 
 code {
-  font-family: "Fira Code", monospace;
+  font-family: "Fira Code", monospace !important;
 }
 
 @supports (font-variation-settings: normal) {
   code {
-    font-family: "Fira Code VF", monospace;
+    font-family: "Fira Code VF", monospace !important;
   }
 }
 
