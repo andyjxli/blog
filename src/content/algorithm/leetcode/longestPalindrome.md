@@ -81,7 +81,7 @@ export const longestPalindrome = function(str: string) {
 
 #### 算法逻辑
 
-```javascript{7,17,20}
+```javascript{7,18,21}
 const longestPalindromeByDP = (str: string) => {
   const len = str.length
   if (len <= 1) return str
