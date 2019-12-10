@@ -1,7 +1,4 @@
-import {
-  longestPalindrome,
-  longestPalindromeByDP,
-} from "./../longestPalindrome"
+import { longestPalindrome, longestPalindromeByDP } from "../longestPalindrome"
 
 it("test longestPalindrome", () => {
   expect(longestPalindrome("abbbba")).toBe("abbbba")

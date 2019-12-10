@@ -5,6 +5,7 @@ const queryAllPageQL = `{
         fileAbsolutePath
         frontmatter {
           title
+          path
           date(fromNow: false, locale: "")
           tags
           layout
@@ -34,9 +35,9 @@ exports.createPages = async ({ actions, graphql }) => {
     edges.forEach(edge => {
       const { node } = edge
       const { frontmatter } = node
-      const { title, category } = frontmatter
+      const { title, category, path } = frontmatter
       createPage({
-        path: `/${category.en_name}/${title.replace(/\s/g, "-")}/`,
+        path: `/${category.en_name}/${(path || title).replace(/\s/g, "-")}/`,
         component: require.resolve(`./src/templates/article.tsx`),
         context: { ...node },
       })
