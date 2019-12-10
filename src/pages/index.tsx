@@ -1,13 +1,15 @@
-import React from "react"
+import React from 'react'
 // import { Link } from "gatsby"
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from '../components/layout'
+import SEO from '../components/seo'
+import { graphql } from 'gatsby'
 
 const IndexPage = () => (
+  // const
+
   <Layout>
-    <SEO title="Home" />
-    <header className="layout__header"></header>
+    <SEO title="fyber" />
   </Layout>
 )
 

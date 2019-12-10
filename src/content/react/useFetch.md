@@ -7,7 +7,7 @@ date: 2019-03-10T10:00:00.000Z
 draft: false
 tags:
   - Time
-category: { zh_name: "前端", en_name: "frontend" }
+category: { title: '前端', name: 'frontend' }
 ---
 
 <center><h1>useFetch</h1></center>
@@ -23,8 +23,8 @@ category: { zh_name: "前端", en_name: "frontend" }
 在开发代码时，我们发送后端请求后接受到的数据，需要使用 try/catch 来捕获错误。而每次捕获出的错误可能需要打印出来以检测 bug。这样我们每次都会写同样的代码，这样在开发过程中很不友好。同时有些同学不习惯使用 try/catch 来捕获错误，这就可能造成不可预计的问题。
 
 ```javascript
-import React, { useCallback, useReducer, useEffect } from "react"
-import { TimeNumberType, PageType } from "common/constant/interface"
+import React, { useCallback, useReducer, useEffect } from 'react'
+import { TimeNumberType, PageType } from 'common/constant/interface'
 
 type ParamsType = PageType & TimeNumberType
 
@@ -33,7 +33,7 @@ const reducer = (state: ParamsType, action: Actions) => {
   return { ...state, ...payload }
 }
 const postListData = (params: ParamsType) =>
-  post("/network/api/test/getlist", params)
+  post('/network/api/test/getlist', params)
 const initialParams = {
   pageSize: 10,
   pageNumber: 1,
@@ -66,20 +66,20 @@ demo 中展示了在业务场景中发送请求的场景，当发送请求多了
 在实际的业务场景中，我们向后端发送请求时，往往伴随着用户点击多次，但是只能发送一次请求的问题，这时我们需要手动加锁。并且在很多场景中我们需要知道请求状态来为页面设置 loading。例如：
 
 ```javascript
-import React, { useCallback, useReducer, useEffect } from "react"
-import { TimeNumberType, PageType } from "common/constant/interface"
-import { DateRangePicker, Table } from "UI"
+import React, { useCallback, useReducer, useEffect } from 'react'
+import { TimeNumberType, PageType } from 'common/constant/interface'
+import { DateRangePicker, Table } from 'UI'
 
 type ParamsType = PageType & TimeNumberType
 
-const TIME = Symbol("time")
-const PAGE = Symbol("page")
+const TIME = Symbol('time')
+const PAGE = Symbol('page')
 const reducer = (state: ParamsType, action: Actions) => {
   const { payload } = action
   return { ...state, ...payload }
 }
 const postListData = (params: ParamsType) =>
-  post("/network/api/test/getlist", params)
+  post('/network/api/test/getlist', params)
 const initialParams = {
   pageSize: 10,
   pageNumber: 1,
@@ -113,7 +113,7 @@ const ListComponent = () => {
   }, [params])
 
   return (
-    <div style={{ marginBottom: "20px" }}>
+    <div style={{ marginBottom: '20px' }}>
       <DateRangePicker onChange={handleDateChange} />
       <Table
         onPageChange={(pageNumber: number) => {

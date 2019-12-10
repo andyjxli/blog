@@ -7,7 +7,7 @@ date: 2019-03-10T10:00:00.000Z
 draft: false
 tags:
   - Time
-category: { zh_name: "前端", en_name: "frontend" }
+category: { title: '前端', name: 'frontend' }
 ---
 
 <center><h1>推广流程重构总结</h1></center>

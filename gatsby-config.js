@@ -1,13 +1,19 @@
+const caterory = require('./config/static/category')
+const tags = require('./config/static/tags')
+
 module.exports = {
   siteMetadata: {
-    title: `仟庸堂`,
-    description: `收藏个人`,
-    author: `@fyber 李嘉欣`,
-    lang: "en",
+    title: `细草微风`,
+    description: `记录、总结日常生活、工作所思所得.`,
+    author: `云浅`,
+    email: `cuteblackcat9@gmail.com`,
+    lang: 'en',
+    caterory,
+    tags,
     social: [
       {
-        name: "github",
-        url: "https://github.com/fyber-LJX",
+        name: 'github',
+        url: 'https://github.com/fyber-LJX',
       },
     ],
   },
@@ -19,6 +25,8 @@ module.exports = {
     `gatsby-plugin-styled-components`,
     // typescript
     `gatsby-plugin-typescript`,
+    // scss
+    `gatsby-plugin-sass`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -47,15 +55,15 @@ module.exports = {
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
-              classPrefix: "language-",
+              classPrefix: 'language-',
               inlineCodeMarker: null,
               aliases: {},
               showLineNumbers: false,
               noInlineHighlight: false,
               languageExtensions: [
                 {
-                  language: "typescript",
-                  extend: "javascript",
+                  language: 'typescript',
+                  extend: 'javascript',
                   definition: {
                     superscript_types: /(SuperType)/,
                   },
@@ -67,8 +75,8 @@ module.exports = {
                 },
               ],
               prompt: {
-                user: "root",
-                host: "localhost",
+                user: 'root',
+                host: 'localhost',
                 global: false,
               },
             },

@@ -1,11 +1,11 @@
 ---
 title: useIntersectionObserver
-image: ""
+image: ''
 author: 李嘉欣
 date: 2019-12-10
 draft: false
 tags:
   - Time
-category: { zh_name: "前端", en_name: "frontend" }
-description: ""
+category: { title: '前端', name: 'frontend' }
+description: ''
 ---

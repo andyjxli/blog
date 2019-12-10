@@ -7,7 +7,7 @@ date: 2019-03-10T10:00:00.000Z
 draft: false
 tags:
   - Time
-category: { zh_name: "前端", en_name: "frontend" }
+category: { title: '前端', name: 'frontend' }
 ---
 
 ## 前言
@@ -36,7 +36,7 @@ category: { zh_name: "前端", en_name: "frontend" }
 // useIntersectionObserver.ts
 // 定义参数函数类型以及返回值类型
 
-import { useState, useCallback, useEffect } from "react"
+import { useState, useCallback, useEffect } from 'react'
 
 type NumberList = number[]
 type ObserverList = Array<React.RefObject<any>>
@@ -90,8 +90,8 @@ const observeExposure = useCallback((list: ObserverList) => {}, [])
 > 判断浏览器环境以及 list 的是否为空
 
 ```typescript
-if (typeof IntersectionObserver === "undefined") {
-  throw new Error("Current browser does not support IntersectionObserver ")
+if (typeof IntersectionObserver === 'undefined') {
+  throw new Error('Current browser does not support IntersectionObserver ')
 }
 if (list.length === 0) return
 ```
@@ -170,7 +170,7 @@ useEffect(() => {
 #### 4. 完整代码实现
 
 ```typescript
-import { useState, useCallback, useEffect } from "react"
+import { useState, useCallback, useEffect } from 'react'
 
 type NumberList = number[]
 type ObserverList = Array<React.RefObject<any>>
@@ -198,7 +198,7 @@ function UseIntersectionObserver(
 
   const observeExposure = useCallback((list: ObserverList) => {
     if (!IntersectionObserver) {
-      throw new Error("Current browser does not support IntersectionObserver ")
+      throw new Error('Current browser does not support IntersectionObserver ')
     }
     if (list.length === 0) return
     // 当观察者存在时销毁该对象
@@ -272,11 +272,11 @@ export default useIntersectionObserver
 > 实现一个简单的商品列表曝光打点的案例
 
 ```typescript
-import Card from "components/goods-card/goods-card"
-import { connect } from "react-redux"
-import { getSinglePromotionList } from "../../page_components/promotion/redux/creator"
-import React, { useEffect, useState, useCallback } from "react"
-import useIntersectionObserver from "page_components/promotion/useIntersectionObserver"
+import Card from 'components/goods-card/goods-card'
+import { connect } from 'react-redux'
+import { getSinglePromotionList } from '../../page_components/promotion/redux/creator'
+import React, { useEffect, useState, useCallback } from 'react'
+import useIntersectionObserver from 'page_components/promotion/useIntersectionObserver'
 
 const List = (props: { info: any; getData: any }) => {
   const { info, getData } = props
@@ -308,7 +308,7 @@ const List = (props: { info: any; getData: any }) => {
   }, [])
 
   return (
-    <div style={{ display: "flex", flexWrap: "wrap" }}>
+    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
       {info.list.map((item: any, index: number) => (
         <div ref={refList[index]} key={index}>
           <Card card={item} />

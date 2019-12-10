@@ -1,8 +1,9 @@
-import React from "react"
-import Layout from "../components/layout"
-import dayjs from "dayjs"
+import React from 'react'
+import Layout from '../components/layout/'
+import dayjs from 'dayjs'
+import SEO from '../components/seo'
 
-import "./index.css"
+import styles from './index.module.scss'
 
 interface Context {
   pageContext: {
@@ -14,8 +15,8 @@ interface Context {
       image: string
       author: string
       category: {
-        zh_name: string
-        en_name: string
+        name: string
+        title: string
       }
     }
     html: string
@@ -28,12 +29,13 @@ const Article = (context: Context) => {
 
   return (
     <Layout>
-      <header className="article__header">
+      <SEO title={title}></SEO>
+      <header className={styles.articleHeader}>
         <h1>{title}</h1>
-        <p className="article__info">
+        <p className={styles.articleInfo}>
           <span>{author}</span>
-          <span>{dayjs(date).format("YYYY-MM-DD")}</span>
-          <span>{category.zh_name}</span>
+          <span>{dayjs(date).format('YYYY-MM-DD')}</span>
+          <span>{category.title}</span>
           <span>{tags[0]}</span>
         </p>
       </header>

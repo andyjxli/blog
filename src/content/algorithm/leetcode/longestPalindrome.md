@@ -1,7 +1,7 @@
 ---
 title: 最长回文字符串
 path: longestPalindrome
-image: ""
+image: ''
 author: 李嘉欣
 date: 2019-12-10
 draft: false
@@ -9,8 +9,8 @@ tags:
   - leetcode
   - DP
   - javascript
-category: { zh_name: "算法", en_name: "algorithm" }
-description: "给定一个字符串 s，找到 s 中最长的回文子串。假设 s 的最大长度为 1000。"
+category: { title: '算法', name: 'algorithm' }
+description: '给定一个字符串 s，找到 s 中最长的回文子串。假设 s 的最大长度为 1000。'
 ---
 
 ## 题目描述
@@ -35,7 +35,7 @@ description: "给定一个字符串 s，找到 s 中最长的回文子串。假�
  * @return {string}
  */
 export const longestPalindrome = function(str: string) {
-  let palindrome = ""
+  let palindrome = ''
   const len = str.length
 
   for (let i = 0; i < len; i++) {
@@ -43,9 +43,9 @@ export const longestPalindrome = function(str: string) {
     for (let j = i + 1; j < len + 1; j++) {
       const curr = str.slice(i, j)
       const reverse = curr
-        .split("")
+        .split('')
         .reverse()
-        .join("")
+        .join('')
 
       if (curr === reverse && palindrome.length < curr.length) palindrome = curr
     }

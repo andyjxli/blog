@@ -12,8 +12,8 @@ const queryAllPageQL = `{
           image
           author
           category {
-            zh_name
-            en_name
+            title
+            name
           }
         }
         html
@@ -37,7 +37,7 @@ exports.createPages = async ({ actions, graphql }) => {
       const { frontmatter } = node
       const { title, category, path } = frontmatter
       createPage({
-        path: `/${category.en_name}/${(path || title).replace(/\s/g, "-")}/`,
+        path: `/${category.name}/${(path || title).replace(/\s/g, '-')}/`,
         component: require.resolve(`./src/templates/article.tsx`),
         context: { ...node },
       })
