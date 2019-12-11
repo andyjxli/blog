@@ -1,0 +1,32 @@
+$base: 16;
+
+.article {
+  margin-bottom: 50rem / $base;
+  border-bottom: 1px solid #f1f1f1;
+
+  h3 {
+    margin-bottom: 10rem / $base;
+  }
+
+  header {
+    span:after {
+      content: '·';
+      margin: 5px;
+      font-weight: 800;
+      color: var(--textNormal) !important;
+    }
+
+    span:last-child:after {
+      content: '';
+    }
+
+    .link {
+      cursor: pointer;
+      user-select: none;
+
+      &:hover {
+        color: var(--hover);
+      }
+    }
+  }
+}

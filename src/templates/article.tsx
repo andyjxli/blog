@@ -4,6 +4,7 @@ import dayjs from 'dayjs'
 import SEO from '../components/seo'
 
 import styles from './index.module.scss'
+import { linkTo } from '../utils/link'
 
 interface Context {
   pageContext: {
@@ -25,18 +26,34 @@ interface Context {
 
 const Article = (context: Context) => {
   const { frontmatter, html } = context.pageContext
-  const { author, category, tags = [], date, title } = frontmatter
+  const { author, category, tags = [], date, title, layout } = frontmatter
 
   return (
-    <Layout>
+    <Layout layout={layout}>
       <SEO title={title}></SEO>
       <header className={styles.articleHeader}>
         <h1>{title}</h1>
         <p className={styles.articleInfo}>
           <span>{author}</span>
           <span>{dayjs(date).format('YYYY-MM-DD')}</span>
-          <span>{category.title}</span>
-          <span>{tags[0]}</span>
+          <span
+            className={styles.link}
+            onClick={() =>
+              (location.href = `${linkTo(`/list/${category.name}`)}`)
+            }
+          >
+            {category.title}
+          </span>
+          {tags &&
+            tags.map((item, index) => (
+              <span
+                key={index}
+                onClick={() => (location.href = `${linkTo(`/list/${item}`)}`)}
+                className={styles.link}
+              >
+                {item}
+              </span>
+            ))}
         </p>
       </header>
       <article>

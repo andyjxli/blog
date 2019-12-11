@@ -21,4 +21,13 @@ $base: 16;
   span:last-child:after {
     content: '';
   }
+
+  .link {
+    cursor: pointer;
+    user-select: none;
+
+    &:hover {
+      color: var(--hover);
+    }
+  }
 }

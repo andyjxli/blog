@@ -11,20 +11,26 @@ $base: 16;
     text-decoration: none;
   }
 
-  header {
+  .logo {
+    font-family: cursive;
     a {
       text-decoration: none;
       color: var(--textTitle);
+      box-shadow: none;
     }
   }
 
   aside {
     .introduction {
+      font-size: 14rem / $base;
       display: flex;
       margin-bottom: 2rem;
     }
 
     .person {
+      span {
+        line-height: 25rem / $base;
+      }
       span:after {
         content: '·';
         margin: 0 5rem / $base;

@@ -10,8 +10,6 @@ tags:
 category: { title: '前端', name: 'frontend' }
 ---
 
-<center><h1>useFetch</h1></center>
-
 ## 前言
 
 > 自 React Hooks 16.8.0 后带来了 React hooks 这一特性。这一特性在没有破坏性的更新下为我们带来了更加舒爽的开发方式。过去我们常常因 providers，consumers，高阶组件，render props 等形成“嵌套地狱”。尽管 Class Component 在某种程度上为我们提供了更方便的写法以及生命周期，但同时也带来了一些不好的地方。例如难以理解的 class 内部原理、难以测试的声明周期。而 React Hooks 为我们提供了一种 Function Component 的写法，让我们用更少的代码写出更加优雅、易懂的代码。本文不做 React Hooks API 的讲述，如有不懂，请移步 [Hooks 简介](https://react.docschina.org/docs/hooks-intro.html)

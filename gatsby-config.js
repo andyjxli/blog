@@ -1,14 +1,15 @@
-const caterory = require('./config/static/category')
+const category = require('./config/static/category')
 const tags = require('./config/static/tags')
 
 module.exports = {
   siteMetadata: {
-    title: `细草微风`,
+    // title: `细草微风`,
+    title: `寻常巷陌`,
     description: `记录、总结日常生活、工作所思所得.`,
     author: `云浅`,
     email: `cuteblackcat9@gmail.com`,
     lang: 'en',
-    caterory,
+    category,
     tags,
     social: [
       {
