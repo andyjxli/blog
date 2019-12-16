@@ -1,4 +1,5 @@
 /**
+ * @description 最长有效括号
  * @param {string} s
  * @return {number}
  */
@@ -17,11 +18,32 @@ const longestValidParenthesesByDP = function(s: string) {
       }
     }
   }
-  console.log(dp)
 
   return Math.max(...dp)
 }
 
+export const longestValidParenthesesByStack = function(s: string) {
+  let max = 0
+  const stack = [-1]
+
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === '(') {
+      stack.push(i)
+    } else {
+      stack.pop()
+      const len = stack.length
+      if (len === 0) {
+        stack.push(i)
+      } else {
+        max = Math.max(max, i - stack[len - 1])
+      }
+    }
+  }
+
+  return max
+}
+
+// 错误想法
 const longestValidParenthesesByDPError = function(s) {
   const len = s.length
   if (len < 2) return 0
