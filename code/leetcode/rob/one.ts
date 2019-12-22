@@ -35,7 +35,18 @@
 // }
 
 const rob = function(nums: number[]) {
-  const
+  // 核心点在于： max 为记录当前位置 i 之前的最大值， prevMax 为 i - 1 位以前的最大值，既然相邻的不能相加，那么当计算到第 i 位，就可以只比较 i - 1 位之前的最大值  prevMax + nums[i] 与 i 位之前的最大值 max之间的大小。
+  let max = 0
+  let prevMax = 0
+  const len = nums.length
+
+  for (let i = 0; i < len; i++) {
+    const temp = max
+    max = Math.max(prevMax + nums[i], max)
+    prevMax = temp
+  }
+
+  return max
 }
 
 export default rob
