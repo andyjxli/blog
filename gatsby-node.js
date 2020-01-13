@@ -27,17 +27,6 @@ const queryAllPageQL = `{
         url
       }
       title
-      category {
-        name
-        title
-      }
-      tags {
-        category
-        tags {
-          title
-          name
-        }
-      }
     }
   }
 }`
@@ -52,47 +41,50 @@ exports.createPages = async ({ actions, graphql }) => {
 
     const nodes = result.data.allMarkdownRemark.nodes
 
+    const categories = []
+    let allTags = []
+
     nodes.forEach(node => {
       const { frontmatter } = node
-      const { title, category, path } = frontmatter
+      const { title, category, path, tags } = frontmatter
+      const existCategory = categories.some(item => item.name === category.name)
+      !existCategory && categories.push(category)
+      allTags = Array.from(new Set([...allTags, ...tags]))
+
       createPage({
         path: `/${category.name}/${(path || title).replace(/\s/g, '-')}/`,
         component: require.resolve(`./src/templates/article.tsx`),
-        context: { ...node },
+        context: { ...node }
       })
     })
-
-    const siteMetadata = result.data.site.siteMetadata
-    const { category, tags } = siteMetadata
+    console.log(allTags, categories)
 
     // 生成分类索引页
-    category.forEach(item => {
+    categories.forEach(item => {
       createPage({
         path: `/list/${item.name}/`,
         component: require.resolve(`./src/templates/list.tsx`),
         context: {
-          category: item.name,
-        },
+          category: item.name
+        }
       })
     })
 
     // 生成标签索引页
-    tags.forEach(tagItem => {
-      tagItem.tags.forEach(tag => {
-        createPage({
-          path: `/list/${tag.name}/`,
-          component: require.resolve(`./src/templates/list.tsx`),
-          context: {
-            tag: tag.name,
-          },
-        })
+    allTags.forEach(tag => {
+      createPage({
+        path: `/list/${tag}/`,
+        component: require.resolve(`./src/templates/list.tsx`),
+        context: {
+          tag
+        }
       })
     })
 
     createPage({
       path: `/`,
       component: require.resolve(`./src/templates/list.tsx`),
-      context: {},
+      context: {}
     })
   } catch (_err) {
     console.log(_err)

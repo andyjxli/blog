@@ -1,6 +1,3 @@
-const category = require('./config/static/category')
-const tags = require('./config/static/tags')
-
 module.exports = {
   siteMetadata: {
     // title: `细草微风`,
@@ -9,8 +6,6 @@ module.exports = {
     author: `云浅`,
     email: `cuteblackcat9@gmail.com`,
     lang: 'en',
-    category,
-    tags,
     social: [
       {
         name: 'github',

@@ -601,23 +601,21 @@ code {
   border-radius: 3px;
   font-family: 'SFMono-Regular', consolas, 'Roboto Mono', 'Droid Sans Mono',
     'Liberation Mono', Menlo, Courier, monospace;
-  padding: 0;
-  padding-top: 0.2em;
-  padding-bottom: 0.2em;
+  padding: 0.5em;
 }
 pre code {
   background: none;
   line-height: 1.42;
 }
-code:before,
-code:after,
+// code:before,
+// code:after,
 tt:before,
 tt:after {
   letter-spacing: -0.2em;
   content: ' ';
 }
-pre code:before,
-pre code:after,
+// pre code:before,
+// pre code:after,
 pre tt:before,
 pre tt:after {
   content: '';

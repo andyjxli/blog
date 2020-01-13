@@ -1,12 +1,12 @@
 @import url(https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.207/distr/fira_code.css);
 
 code {
-  font-family: "Fira Code", monospace !important;
+  font-family: 'Fira Code', monospace !important;
 }
 
 @supports (font-variation-settings: normal) {
   code {
-    font-family: "Fira Code VF", monospace !important;
+    font-family: 'Fira Code VF', monospace !important;
   }
 }
 
@@ -64,7 +64,7 @@ body:lang(fa) blockquote {
 .token.doctype,
 .token.selector {
   color: #c792ea;
-  font-style: "italic";
+  font-style: 'italic';
 }
 
 .token.class-name {
@@ -122,13 +122,13 @@ pre[data-line] {
   }
 }
 
-.gatsby-highlight pre[class*="language-"] {
+.gatsby-highlight pre[class*='language-'] {
   float: left;
   min-width: 100%;
 }
 
-code[class*="language-"],
-pre[class*="language-"] {
+code[class*='language-'],
+pre[class*='language-'] {
   color: #fff;
   background: none;
   font-family: Consolas, Menlo, Monaco, source-code-pro, Courier New, monospace;
@@ -149,26 +149,28 @@ pre[class*="language-"] {
   hyphens: none;
 }
 
-pre[class*="language-"] {
+pre[class*='language-'] {
   overflow: auto;
   padding: 1.3125rem;
 }
 
-pre[class*="language-"]::selection {
+pre[class*='language-']::selection {
   background: #27292a;
 }
 
-pre[class*="language-"]::selection,
-pre[class*="language-"] ::selection {
+pre[class*='language-']::selection,
+pre[class*='language-'] ::selection {
   text-shadow: none;
   background: hsla(0, 0%, 100%, 0.15);
 }
 
-:not(pre) > code[class*="language-"] {
+:not(pre) > code[class*='language-'] {
   border-radius: 0.3em;
   background: var(--inlineCode-bg);
   color: var(--inlineCode-text);
-  padding: 0.15em 0.2em 0.05em;
+  padding: 0.15em 0.4em;
+  box-sizing: border-box;
+  margin: 0 0.3em;
   white-space: normal;
 }
 

@@ -2,7 +2,7 @@
 layout: post
 title: project_rewrite
 image: img/xiyizhou.jpg
-author: XiYiZi
+author: xilizi
 date: 2019-03-10T10:00:00.000Z
 draft: false
 tags:
