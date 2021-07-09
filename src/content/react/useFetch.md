@@ -30,13 +30,12 @@ const reducer = (state: ParamsType, action: Actions) => {
   const { payload } = action
   return { ...state, ...payload }
 }
-const postListData = (params: ParamsType) =>
-  post('/network/api/test/getlist', params)
+const postListData = (params: ParamsType) => post('/network/api/test/getlist', params)
 const initialParams = {
   pageSize: 10,
   pageNumber: 1,
   startTime: 0,
-  endTime: 0,
+  endTime: 0
 }
 
 const ListComponent = () => {
@@ -76,13 +75,12 @@ const reducer = (state: ParamsType, action: Actions) => {
   const { payload } = action
   return { ...state, ...payload }
 }
-const postListData = (params: ParamsType) =>
-  post('/network/api/test/getlist', params)
+const postListData = (params: ParamsType) => post('/network/api/test/getlist', params)
 const initialParams = {
   pageSize: 10,
   pageNumber: 1,
   startTime: 0,
-  endTime: 0,
+  endTime: 0
 }
 
 const ListComponent = () => {

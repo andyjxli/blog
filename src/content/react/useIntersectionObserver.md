@@ -112,9 +112,7 @@ intersectionObserver = new IntersectionObserver(entries => {
   // 递归每一个本次被监听对象，如果按照曝光条件出现在可视区，则调用callback函数，并且取消监听
   entries.forEach(entrie => {
     // 找出本次被监听对象在list中的索引
-    const index = Array.from(list).findIndex(
-      item => item.current === entrie.target
-    )
+    const index = Array.from(list).findIndex(item => item.current === entrie.target)
     // 防止意外发生
     if (index === -1) return
 
@@ -125,9 +123,7 @@ intersectionObserver = new IntersectionObserver(entries => {
       activeList.push(index)
 
       // 解除观察， 若需要无限观察则不取消监听
-      !infinite &&
-        intersectionObserver &&
-        intersectionObserver.unobserve(list[index].current)
+      !infinite && intersectionObserver && intersectionObserver.unobserve(list[index].current)
     }
   })
 
@@ -141,9 +137,7 @@ intersectionObserver = new IntersectionObserver(entries => {
 ```typescript
 // 递归观察每一个元素
 list.forEach(item => {
-  item.current &&
-    intersectionObserver &&
-    intersectionObserver.observe(item.current)
+  item.current && intersectionObserver && intersectionObserver.observe(item.current)
 
   // 可以兼容直接传入DOM节点。
   // if((<React.RefObject<any>>item).current) {
@@ -211,9 +205,7 @@ function UseIntersectionObserver(
       // 递归每一个本次被监听对象，如果按照曝光条件出现在可视区，则调用callback函数，并且取消监听
       entries.forEach(entrie => {
         // 找出本次被监听对象在list中的索引
-        const index = Array.from(list).findIndex(
-          item => item.current === entrie.target
-        )
+        const index = Array.from(list).findIndex(item => item.current === entrie.target)
         // 防止意外发生
         if (index === -1) return
 
@@ -224,9 +216,7 @@ function UseIntersectionObserver(
           activeList.push(index)
 
           // 解除观察， 若需要无限观察则不取消监听
-          !infinite &&
-            intersectionObserver &&
-            intersectionObserver.unobserve(list[index].current)
+          !infinite && intersectionObserver && intersectionObserver.unobserve(list[index].current)
         }
       })
 
@@ -235,9 +225,7 @@ function UseIntersectionObserver(
     }, opt)
 
     list.forEach(item => {
-      item.current &&
-        intersectionObserver &&
-        intersectionObserver.observe(item.current)
+      item.current && intersectionObserver && intersectionObserver.observe(item.current)
 
       // 可以兼容直接传入DOM节点。
       // if((<React.RefObject<any>>item).current) {
@@ -321,13 +309,13 @@ const List = (props: { info: any; getData: any }) => {
 const mapStateToProps = (state: any) => {
   return {
     info: state.promotionStore.singlePromotionInfo,
-    userInfo: state.userInfo,
+    userInfo: state.userInfo
   }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    getData: () => dispatch(getSinglePromotionList(params, silence)),
+    getData: () => dispatch(getSinglePromotionList(params, silence))
   }
 }
 

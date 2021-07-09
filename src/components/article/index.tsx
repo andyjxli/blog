@@ -1,7 +1,7 @@
 import { ArticleInfo } from '../../type/article'
 import dayjs from 'dayjs'
 import React from 'react'
-import styles from './index.module.scss'
+import * as styles from './index.module.less'
 import { linkTo } from '../../utils/link'
 
 const ArticleComponent = (props: { article: ArticleInfo }) => {
@@ -18,9 +18,7 @@ const ArticleComponent = (props: { article: ArticleInfo }) => {
           <span>{dayjs(date).format('YYYY-MM-DD')}</span>
           <span
             className={styles.link}
-            onClick={() =>
-              (location.href = `${linkTo(`/list/${category.name}`)}`)
-            }
+            onClick={() => (location.href = `${linkTo(`/list/${category.name}`)}`)}
           >
             {category.title}
           </span>

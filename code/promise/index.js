@@ -1,16 +1,12 @@
-const PENDING = Symbol("pending")
-const FULFILLED = Symbol("fulfilled")
-const REJECTED = Symbol("rejected")
+const PENDING = Symbol('pending')
+const FULFILLED = Symbol('fulfilled')
+const REJECTED = Symbol('rejected')
 const noop = () => {}
-const isFunction = fn => typeof fn === "function"
+const isFunction = fn => typeof fn === 'function'
 const asyncFn = (function() {
-  if (
-    typeof process === "object" &&
-    process !== null &&
-    typeof process.nextTick === "function"
-  ) {
+  if (typeof process === 'object' && process !== null && typeof process.nextTick === 'function') {
     return process.nextTick
-  } else if (typeof setImmediate === "function") {
+  } else if (typeof setImmediate === 'function') {
     return setImmediate
   }
   return setTimeout
@@ -27,7 +23,7 @@ function FyberPromise(executor) {
     // promise 和 value 指向同一对象
     // 对应 Promise A+ 规范 2.3.1
     if (value === this) {
-      return reject(new TypeError("A promise cannot be resolved with itself."))
+      return reject(new TypeError('A promise cannot be resolved with itself.'))
     }
 
     // 如果 value 为 Promise，则使 promise 接受 value 的状态
@@ -44,7 +40,7 @@ function FyberPromise(executor) {
       return
     }
 
-    if (value && (typeof value === "object" || typeof value === "function")) {
+    if (value && (typeof value === 'object' || typeof value === 'function')) {
       let then = null
 
       try {
@@ -53,7 +49,7 @@ function FyberPromise(executor) {
         return reject(err)
       }
 
-      if (typeof then === "function") {
+      if (typeof then === 'function') {
         try {
           then.call(
             value,
@@ -92,10 +88,7 @@ function FyberPromise(executor) {
 
   function handleResolved(promise, deferred) {
     asyncFn(function() {
-      const cb =
-        promise.status === FULFILLED
-          ? deferred.onFulfilled
-          : deferred.onRejected
+      const cb = promise.status === FULFILLED ? deferred.onFulfilled : deferred.onRejected
       try {
         // 箭头函数call无效，会绑定在外部作用域
         const res = cb(promise.value)
@@ -143,10 +136,10 @@ const pros = new FyberPromise((resolve, reject) => {
 })
 pros
   .then(value => {
-    console.log(value, "one")
+    console.log(value, 'one')
     return new FyberPromise(r => r(3))
   })
   .then(
-    value => console.log(value, "two"),
-    reason => console.log(reason, "two reason")
+    value => console.log(value, 'two'),
+    reason => console.log(reason, 'two reason')
   )

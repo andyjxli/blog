@@ -3,7 +3,7 @@ import Layout from '../components/layout/'
 import dayjs from 'dayjs'
 import SEO from '../components/seo'
 
-import styles from './index.module.scss'
+import * as styles from './index.module.less'
 import { linkTo } from '../utils/link'
 
 interface Context {
@@ -38,9 +38,7 @@ const Article = (context: Context) => {
           <span>{dayjs(date).format('YYYY-MM-DD')}</span>
           <span
             className={styles.link}
-            onClick={() =>
-              (location.href = `${linkTo(`/list/${category.name}`)}`)
-            }
+            onClick={() => (location.href = `${linkTo(`/list/${category.name}`)}`)}
           >
             {category.title}
           </span>
@@ -57,10 +55,7 @@ const Article = (context: Context) => {
         </p>
       </header>
       <article>
-        <div
-          className="content"
-          dangerouslySetInnerHTML={{ __html: html }}
-        ></div>
+        <div className="content" dangerouslySetInnerHTML={{ __html: html }}></div>
       </article>
     </Layout>
   )

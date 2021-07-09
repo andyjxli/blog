@@ -1,4 +1,4 @@
-$base: 16;
+@base: 16;
 
 .layout__container {
   margin-left: auto;
@@ -22,18 +22,18 @@ $base: 16;
 
   aside {
     .introduction {
-      font-size: 14rem / $base;
+      font-size: 14rem / @base;
       display: flex;
       margin-bottom: 2rem;
     }
 
     .person {
       span {
-        line-height: 25rem / $base;
+        line-height: 25rem / @base;
       }
       span:after {
         content: '·';
-        margin: 0 5rem / $base;
+        margin: 0 5rem / @base;
         font-weight: 800;
       }
       span:last-child:after {
@@ -48,7 +48,7 @@ $base: 16;
       justify-content: center;
 
       div {
-        line-height: 20rem / $base;
+        line-height: 20rem / @base;
       }
     }
 
@@ -62,14 +62,14 @@ $base: 16;
   }
 
   // main {
-  //   margin-bottom: 60rem / $base;
+  //   margin-bottom: 60rem / @base;
   // }
 
   // footer {
   //   position: fixed;
   //   bottom: 0;
   //   max-width: 42rem;
-  //   height: 60rem / $base;
+  //   height: 60rem / @base;
   //   padding: 2.625rem 1.3125rem;
   // }
 }

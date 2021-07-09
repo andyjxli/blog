@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import './../../styles/index.scss'
-import styles from './index.module.scss'
+import './../../styles/index.less'
+import * as styles from './index.module.less'
 import { SiteInfo } from '../../type/site'
+
+console.log(styles)
 
 const Layout = ({ children, layout = 'index' }) => {
   const data: SiteInfo = useStaticQuery(graphql`
@@ -31,8 +33,7 @@ const Layout = ({ children, layout = 'index' }) => {
 
   const { description, author, social, title } = data.site.siteMetadata
 
-  const style =
-    layout === 'index' ? { fontSize: '1.8rem' } : { fontSize: '1.5rem' }
+  const style = layout === 'index' ? { fontSize: '1.8rem' } : { fontSize: '1.5rem' }
 
   return (
     <div className={styles.layout__container}>
