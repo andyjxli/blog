@@ -83,9 +83,7 @@ intersectionObserver <span class="token operator">=</span> <span class="token ke
   <span class="token comment">// 递归每一个本次被监听对象，如果按照曝光条件出现在可视区，则调用callback函数，并且取消监听</span>
   entries<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">entrie</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
     <span class="token comment">// 找出本次被监听对象在list中的索引</span>
-    <span class="token keyword">const</span> index <span class="token operator">=</span> Array<span class="token punctuation">.</span><span class="token function">from</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">findIndex</span><span class="token punctuation">(</span>
-      <span class="token parameter">item</span> <span class="token operator">=></span> item<span class="token punctuation">.</span>current <span class="token operator">===</span> entrie<span class="token punctuation">.</span>target
-    <span class="token punctuation">)</span>
+    <span class="token keyword">const</span> index <span class="token operator">=</span> Array<span class="token punctuation">.</span><span class="token function">from</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">findIndex</span><span class="token punctuation">(</span><span class="token parameter">item</span> <span class="token operator">=></span> item<span class="token punctuation">.</span>current <span class="token operator">===</span> entrie<span class="token punctuation">.</span>target<span class="token punctuation">)</span>
     <span class="token comment">// 防止意外发生</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">===</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">return</span>
 
@@ -96,9 +94,7 @@ intersectionObserver <span class="token operator">=</span> <span class="token ke
       activeList<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span>
 
       <span class="token comment">// 解除观察， 若需要无限观察则不取消监听</span>
-      <span class="token operator">!</span>infinite <span class="token operator">&amp;&amp;</span>
-        intersectionObserver <span class="token operator">&amp;&amp;</span>
-        intersectionObserver<span class="token punctuation">.</span><span class="token function">unobserve</span><span class="token punctuation">(</span>list<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>current<span class="token punctuation">)</span>
+      <span class="token operator">!</span>infinite <span class="token operator">&amp;&amp;</span> intersectionObserver <span class="token operator">&amp;&amp;</span> intersectionObserver<span class="token punctuation">.</span><span class="token function">unobserve</span><span class="token punctuation">(</span>list<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>current<span class="token punctuation">)</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span><span class="token punctuation">)</span>
 
@@ -110,9 +106,7 @@ intersectionObserver <span class="token operator">=</span> <span class="token ke
 </blockquote>
 <div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token comment">// 递归观察每一个元素</span>
 list<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">item</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-  item<span class="token punctuation">.</span>current <span class="token operator">&amp;&amp;</span>
-    intersectionObserver <span class="token operator">&amp;&amp;</span>
-    intersectionObserver<span class="token punctuation">.</span><span class="token function">observe</span><span class="token punctuation">(</span>item<span class="token punctuation">.</span>current<span class="token punctuation">)</span>
+  item<span class="token punctuation">.</span>current <span class="token operator">&amp;&amp;</span> intersectionObserver <span class="token operator">&amp;&amp;</span> intersectionObserver<span class="token punctuation">.</span><span class="token function">observe</span><span class="token punctuation">(</span>item<span class="token punctuation">.</span>current<span class="token punctuation">)</span>
 
   <span class="token comment">// 可以兼容直接传入DOM节点。</span>
   <span class="token comment">// if((&lt;React.RefObject&lt;any>>item).current) {</span>
@@ -172,9 +166,7 @@ type ResultType <span class="token operator">=</span> <span class="token punctua
       <span class="token comment">// 递归每一个本次被监听对象，如果按照曝光条件出现在可视区，则调用callback函数，并且取消监听</span>
       entries<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">entrie</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
         <span class="token comment">// 找出本次被监听对象在list中的索引</span>
-        <span class="token keyword">const</span> index <span class="token operator">=</span> Array<span class="token punctuation">.</span><span class="token function">from</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">findIndex</span><span class="token punctuation">(</span>
-          <span class="token parameter">item</span> <span class="token operator">=></span> item<span class="token punctuation">.</span>current <span class="token operator">===</span> entrie<span class="token punctuation">.</span>target
-        <span class="token punctuation">)</span>
+        <span class="token keyword">const</span> index <span class="token operator">=</span> Array<span class="token punctuation">.</span><span class="token function">from</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">findIndex</span><span class="token punctuation">(</span><span class="token parameter">item</span> <span class="token operator">=></span> item<span class="token punctuation">.</span>current <span class="token operator">===</span> entrie<span class="token punctuation">.</span>target<span class="token punctuation">)</span>
         <span class="token comment">// 防止意外发生</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">===</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">return</span>
 
@@ -185,9 +177,7 @@ type ResultType <span class="token operator">=</span> <span class="token punctua
           activeList<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span>
 
           <span class="token comment">// 解除观察， 若需要无限观察则不取消监听</span>
-          <span class="token operator">!</span>infinite <span class="token operator">&amp;&amp;</span>
-            intersectionObserver <span class="token operator">&amp;&amp;</span>
-            intersectionObserver<span class="token punctuation">.</span><span class="token function">unobserve</span><span class="token punctuation">(</span>list<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>current<span class="token punctuation">)</span>
+          <span class="token operator">!</span>infinite <span class="token operator">&amp;&amp;</span> intersectionObserver <span class="token operator">&amp;&amp;</span> intersectionObserver<span class="token punctuation">.</span><span class="token function">unobserve</span><span class="token punctuation">(</span>list<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">.</span>current<span class="token punctuation">)</span>
         <span class="token punctuation">}</span>
       <span class="token punctuation">}</span><span class="token punctuation">)</span>
 
@@ -196,9 +186,7 @@ type ResultType <span class="token operator">=</span> <span class="token punctua
     <span class="token punctuation">}</span><span class="token punctuation">,</span> opt<span class="token punctuation">)</span>
 
     list<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">item</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-      item<span class="token punctuation">.</span>current <span class="token operator">&amp;&amp;</span>
-        intersectionObserver <span class="token operator">&amp;&amp;</span>
-        intersectionObserver<span class="token punctuation">.</span><span class="token function">observe</span><span class="token punctuation">(</span>item<span class="token punctuation">.</span>current<span class="token punctuation">)</span>
+      item<span class="token punctuation">.</span>current <span class="token operator">&amp;&amp;</span> intersectionObserver <span class="token operator">&amp;&amp;</span> intersectionObserver<span class="token punctuation">.</span><span class="token function">observe</span><span class="token punctuation">(</span>item<span class="token punctuation">.</span>current<span class="token punctuation">)</span>
 
       <span class="token comment">// 可以兼容直接传入DOM节点。</span>
       <span class="token comment">// if((&lt;React.RefObject&lt;any>>item).current) {</span>
@@ -278,13 +266,13 @@ type ResultType <span class="token operator">=</span> <span class="token punctua
 <span class="token keyword">const</span> <span class="token function-variable function">mapStateToProps</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">state<span class="token operator">:</span> any</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
   <span class="token keyword">return</span> <span class="token punctuation">{</span>
     info<span class="token operator">:</span> state<span class="token punctuation">.</span>promotionStore<span class="token punctuation">.</span>singlePromotionInfo<span class="token punctuation">,</span>
-    userInfo<span class="token operator">:</span> state<span class="token punctuation">.</span>userInfo<span class="token punctuation">,</span>
+    userInfo<span class="token operator">:</span> state<span class="token punctuation">.</span>userInfo
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">const</span> <span class="token function-variable function">mapDispatchToProps</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">dispatch<span class="token operator">:</span> any</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
   <span class="token keyword">return</span> <span class="token punctuation">{</span>
-    <span class="token function-variable function">getData</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">getSinglePromotionList</span><span class="token punctuation">(</span>params<span class="token punctuation">,</span> silence<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token function-variable function">getData</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token function">getSinglePromotionList</span><span class="token punctuation">(</span>params<span class="token punctuation">,</span> silence<span class="token punctuation">)</span><span class="token punctuation">)</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 

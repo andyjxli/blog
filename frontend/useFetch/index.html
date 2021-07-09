@@ -14,13 +14,12 @@ type ParamsType <span class="token operator">=</span> PageType <span class="toke
   <span class="token keyword">const</span> <span class="token punctuation">{</span> payload <span class="token punctuation">}</span> <span class="token operator">=</span> action
   <span class="token keyword">return</span> <span class="token punctuation">{</span> <span class="token operator">...</span>state<span class="token punctuation">,</span> <span class="token operator">...</span>payload <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-<span class="token keyword">const</span> <span class="token function-variable function">postListData</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">params<span class="token operator">:</span> ParamsType</span><span class="token punctuation">)</span> <span class="token operator">=></span>
-  <span class="token function">post</span><span class="token punctuation">(</span><span class="token string">'/network/api/test/getlist'</span><span class="token punctuation">,</span> params<span class="token punctuation">)</span>
+<span class="token keyword">const</span> <span class="token function-variable function">postListData</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">params<span class="token operator">:</span> ParamsType</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">post</span><span class="token punctuation">(</span><span class="token string">'/network/api/test/getlist'</span><span class="token punctuation">,</span> params<span class="token punctuation">)</span>
 <span class="token keyword">const</span> initialParams <span class="token operator">=</span> <span class="token punctuation">{</span>
   pageSize<span class="token operator">:</span> <span class="token number">10</span><span class="token punctuation">,</span>
   pageNumber<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
   startTime<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
-  endTime<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+  endTime<span class="token operator">:</span> <span class="token number">0</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">const</span> <span class="token function-variable function">ListComponent</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
@@ -54,13 +53,12 @@ type ParamsType <span class="token operator">=</span> PageType <span class="toke
   <span class="token keyword">const</span> <span class="token punctuation">{</span> payload <span class="token punctuation">}</span> <span class="token operator">=</span> action
   <span class="token keyword">return</span> <span class="token punctuation">{</span> <span class="token operator">...</span>state<span class="token punctuation">,</span> <span class="token operator">...</span>payload <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-<span class="token keyword">const</span> <span class="token function-variable function">postListData</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">params<span class="token operator">:</span> ParamsType</span><span class="token punctuation">)</span> <span class="token operator">=></span>
-  <span class="token function">post</span><span class="token punctuation">(</span><span class="token string">'/network/api/test/getlist'</span><span class="token punctuation">,</span> params<span class="token punctuation">)</span>
+<span class="token keyword">const</span> <span class="token function-variable function">postListData</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">params<span class="token operator">:</span> ParamsType</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">post</span><span class="token punctuation">(</span><span class="token string">'/network/api/test/getlist'</span><span class="token punctuation">,</span> params<span class="token punctuation">)</span>
 <span class="token keyword">const</span> initialParams <span class="token operator">=</span> <span class="token punctuation">{</span>
   pageSize<span class="token operator">:</span> <span class="token number">10</span><span class="token punctuation">,</span>
   pageNumber<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
   startTime<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
-  endTime<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+  endTime<span class="token operator">:</span> <span class="token number">0</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">const</span> <span class="token function-variable function">ListComponent</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
