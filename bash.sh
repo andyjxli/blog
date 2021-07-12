@@ -5,8 +5,7 @@ WEB_PATH='/www/blog'
 echo "start deployment"
 cd WEB_PATH
 
-echo "pull from remote..."
-git pull
+pwd
 
 echo "yarn start"
 yarn
