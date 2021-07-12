@@ -3,7 +3,7 @@ module.exports = {
     // title: `细草微风`,
     title: `寻常巷陌`,
     description: `记录、总结日常生活、工作所思所得.`,
-    author: `andyjxli`,
+    author: `andyjxli ❤️❤️`,
     email: `cuteblackcat9@gmail.com`,
     lang: 'en',
     social: [

@@ -4,8 +4,10 @@ WEB_PATH='/www/blog'
 
 echo "start deployment"
 cd WEB_PATH
-echo "pull from remote..."
 
+echo "pull from remote..."
 git pull
+
+echo "build start"
 yarn && yarn build
-echo "done"
+echo "build done"
