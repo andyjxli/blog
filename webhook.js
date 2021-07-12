@@ -18,7 +18,7 @@ http
   .listen(4396)
 
 handler.on('error', err => {
-  console.error('Error:', err.message)
+  console.error('Error:', err)
 })
 
 handler.on('push', event => {
@@ -29,19 +29,19 @@ handler.on('push', event => {
   )
   const path = event.path.replace('/webhook', '')
   console.log(path, '')
-  runCmd('sh', [`.${path}/bash.sh`, event.payload.repository.name], text => {
-    console.log(text)
-  })
+  // runCmd('sh', [`.${path}/bash.sh`, event.payload.repository.name], (text) => {
+  //   console.log(text);
+  // });
 })
 
-function runCmd(cmd, args, callback) {
-  const { spawn } = require('child_process')
-  const child = spawn(cmd, args)
-  let resp = ''
-  child.stdout.on('data', buffer => {
-    resp += buffer.toString()
-  })
-  child.stdout.on('end', () => {
-    callback(resp)
-  })
-}
+// function runCmd(cmd, args, callback) {
+//   const { spawn } = require('child_process');
+//   const child = spawn(cmd, args);
+//   let resp = '';
+//   child.stdout.on('data', (buffer) => {
+//     resp += buffer.toString();
+//   });
+//   child.stdout.on('end', () => {
+//     callback(resp);
+//   });
+// }
