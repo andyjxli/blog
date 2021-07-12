@@ -8,6 +8,9 @@ cd WEB_PATH
 echo "pull from remote..."
 git pull
 
+echo "yarn start"
+yarn
+
 echo "build start"
-yarn && yarn build
+yarn build
 echo "build done"
