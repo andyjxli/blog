@@ -4,7 +4,8 @@ WEB_PATH='/www/blog'
 echo "start deployment"
 cd $WEB_PATH
 
-pwd
+echo "start pull"
+git pull
 
 echo "yarn start"
 yarn
