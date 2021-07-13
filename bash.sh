@@ -1,9 +1,8 @@
 #!/bin/bash
-# 网站的根目录
-WEB_PATH='/www/blog'
+WEB_PATH='/www/aaa'
 
 echo "start deployment"
-cd WEB_PATH
+cd $WEB_PATH
 
 pwd
 
