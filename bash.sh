@@ -1,5 +1,5 @@
 #!/bin/bash
-WEB_PATH='/www/aaa'
+WEB_PATH='/www/blog'
 
 echo "start deployment"
 cd $WEB_PATH
