@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [reactRefresh()],
   base: '/',
   server: {
-    port: 6666,
+    port: 7777,
   },
   resolve: {
     alias: [

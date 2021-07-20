@@ -1,0 +1,96 @@
+@import '@/styles/theme.less';
+
+.layout {
+  background: #2a3139;
+  width: 100vw;
+  min-height: 100vh;
+  min-width: 960px;
+  overflow: auto;
+  color: #fff;
+
+  .main {
+    height: calc(100vh - 64px);
+    background-color: #fff;
+
+    .sider {
+      padding-top: 10px;
+      background: #fff;
+    }
+
+    .content {
+      min-height: calc(100vh - 64px);
+    }
+  }
+
+  .header {
+    position: relative;
+    z-index: 10;
+    max-width: 100%;
+    background: #fff;
+    padding-left: 0;
+    height: 64px;
+    box-shadow: 0 2px 8px #f0f1f2;
+
+    nav {
+      display: flex;
+      margin-right: 20px;
+    }
+
+    .navItem {
+      align-items: center;
+      color: #202124;
+      display: flex;
+      font-weight: 500;
+      margin: 0;
+      padding: 0 16px;
+      position: relative;
+      padding: 0 24px;
+      height: 64px;
+      transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+      &.active {
+        box-shadow: 0 -2px 0 @primary-color inset;
+      }
+
+      &:hover {
+        background-color: rgba(32, 33, 36, 0.04);
+      }
+    }
+
+    .aboutLink {
+      font-size: 26px;
+    }
+
+    .aboutLinkIcon {
+      margin-left: 20px;
+    }
+
+    .github {
+      color: #000;
+    }
+
+    .twitter {
+      color: #4ca0eb;
+    }
+  }
+  .logo {
+    width: 180px;
+    height: 27px;
+    margin-right: 50px;
+  }
+
+  .headerLeft {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 0;
+    min-width: 225px;
+
+    span {
+      position: absolute;
+      font-size: 20px;
+      left: 50px;
+      color: rgba(0, 0, 0, 0.85);
+    }
+  }
+}

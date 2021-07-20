@@ -1,11 +1,6 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  extends: [
-    'prettier',
-    'plugin:react/recommended',
-    'plugin:prettier/recommended',
-    'plugin:import/typescript',
-  ],
+  extends: ['prettier', 'plugin:react/recommended', 'plugin:prettier/recommended', 'plugin:import/typescript'],
   plugins: ['@typescript-eslint', 'prettier', 'react-hooks'],
   env: {
     browser: true,
@@ -37,7 +32,7 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 'off',
     'arrow-parens': ['error', 'always'], // prettier conflict
     'function-paren-newline': 'off', // prettier conflict
-    'import/order': 'error',
+    // 'import/order': 'error',
     // 'operator-linebreak': 'off', // prettier conflict
     'prettier/prettier': 'error',
     'react/display-name': 'off',
@@ -51,10 +46,7 @@ module.exports = {
         tabWidth: 2,
       },
     ],
-    '@typescript-eslint/explicit-module-boundary-types': [
-      'off',
-      { allowTypedFunctionExpressions: true },
-    ],
+    '@typescript-eslint/explicit-module-boundary-types': ['off', { allowTypedFunctionExpressions: true }],
     '@typescript-eslint/no-unused-vars': ['error'],
     camelcase: ['off'],
   },
