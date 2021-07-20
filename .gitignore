@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -69,3 +70,10 @@ yarn-error.log
 .yarn-integrity
 
 code/*/dist/*
+=======
+node_modules
+.DS_Store
+dist
+dist-ssr
+*.local
+>>>>>>> feat: init
