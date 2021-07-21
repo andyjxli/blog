@@ -9,7 +9,7 @@ export default defineConfig({
   plugins: [
     reactRefresh(),
     mdPlugin({
-      mode: [Mode.HTML],
+      mode: [Mode.HTML, Mode.TOC],
       markdownIt: {
         highlight: function (str, lang) {
           if (lang && hljs.getLanguage(lang)) {

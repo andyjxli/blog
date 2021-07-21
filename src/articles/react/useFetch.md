@@ -1,8 +1,7 @@
 ---
-layout: post
 title: useFetch
 image: img/xiyizhou.jpg
-author: XiYiZi
+author: andyjxli
 date: 2019-03-10T10:00:00.000Z
 draft: false
 tags:
