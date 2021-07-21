@@ -6,10 +6,9 @@
   min-height: 100vh;
   min-width: 960px;
   overflow: auto;
-  color: #fff;
 
   .main {
-    height: calc(100vh - 64px);
+    margin-top: 64px;
     background-color: #fff;
 
     .sider {
@@ -23,9 +22,10 @@
   }
 
   .header {
-    position: relative;
+    position: fixed;
+    top: 0;
+    width: 100vw;
     z-index: 10;
-    max-width: 100%;
     background: #fff;
     padding-left: 0;
     height: 64px;
