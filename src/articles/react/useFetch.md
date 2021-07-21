@@ -21,39 +21,39 @@ category: { title: '前端', name: 'frontend' }
 在开发代码时，我们发送后端请求后接受到的数据，需要使用 try/catch 来捕获错误。而每次捕获出的错误可能需要打印出来以检测 bug。这样我们每次都会写同样的代码，这样在开发过程中很不友好。同时有些同学不习惯使用 try/catch 来捕获错误，这就可能造成不可预计的问题。
 
 ```javascript
-import React, { useCallback, useReducer, useEffect } from 'react'
-import { TimeNumberType, PageType } from 'common/constant/interface'
+import React, { useCallback, useReducer, useEffect } from 'react';
+import { TimeNumberType, PageType } from 'common/constant/interface';
 
-type ParamsType = PageType & TimeNumberType
+type ParamsType = PageType & TimeNumberType;
 
 const reducer = (state: ParamsType, action: Actions) => {
-  const { payload } = action
-  return { ...state, ...payload }
-}
-const postListData = (params: ParamsType) => post('/network/api/test/getlist', params)
+  const { payload } = action;
+  return { ...state, ...payload };
+};
+const postListData = (params: ParamsType) => post('/network/api/test/getlist', params);
 const initialParams = {
   pageSize: 10,
   pageNumber: 1,
   startTime: 0,
-  endTime: 0
-}
+  endTime: 0,
+};
 
 const ListComponent = () => {
-  const [params, dispatch] = useReducer(reducer, initialState)
+  const [params, dispatch] = useReducer(reducer, initialState);
   const getList = async () => {
     // try catch
     try {
-      const res = await postListData(params)
-      console.log(res)
+      const res = await postListData(params);
+      console.log(res);
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
-  }
+  };
 
   useEffect(() => {
-    getList()
-  }, [params])
-}
+    getList();
+  }, [params]);
+};
 ```
 
 demo 中展示了在业务场景中发送请求的场景，当发送请求多了之后我们会每次手动 try / catch，虽然不是大问题，但是重复代码写多了会觉得难受...。下面看第二个功能。
@@ -63,65 +63,65 @@ demo 中展示了在业务场景中发送请求的场景，当发送请求多了
 在实际的业务场景中，我们向后端发送请求时，往往伴随着用户点击多次，但是只能发送一次请求的问题，这时我们需要手动加锁。并且在很多场景中我们需要知道请求状态来为页面设置 loading。例如：
 
 ```javascript
-import React, { useCallback, useReducer, useEffect } from 'react'
-import { TimeNumberType, PageType } from 'common/constant/interface'
-import { DateRangePicker, Table } from 'UI'
+import React, { useCallback, useReducer, useEffect } from 'react';
+import { TimeNumberType, PageType } from 'common/constant/interface';
+import { DateRangePicker, Table } from 'UI';
 
-type ParamsType = PageType & TimeNumberType
+type ParamsType = PageType & TimeNumberType;
 
-const TIME = Symbol('time')
-const PAGE = Symbol('page')
+const TIME = Symbol('time');
+const PAGE = Symbol('page');
 const reducer = (state: ParamsType, action: Actions) => {
-  const { payload } = action
-  return { ...state, ...payload }
-}
-const postListData = (params: ParamsType) => post('/network/api/test/getlist', params)
+  const { payload } = action;
+  return { ...state, ...payload };
+};
+const postListData = (params: ParamsType) => post('/network/api/test/getlist', params);
 const initialParams = {
   pageSize: 10,
   pageNumber: 1,
   startTime: 0,
-  endTime: 0
-}
+  endTime: 0,
+};
 
 const ListComponent = () => {
-  const [params, dispatch] = useReducer(reducer, initialState)
-  const [loading, setLoading] = useState(false)
-  const [list, setList] = useState({})
+  const [params, dispatch] = useReducer(reducer, initialState);
+  const [loading, setLoading] = useState(false);
+  const [list, setList] = useState({});
 
   const getList = async () => {
     // loading is true
-    if (loading) return
+    if (loading) return;
     // set loading status
-    setLoading(true)
+    setLoading(true);
     // try catch
     try {
-      const res = await postListData(params)
-      setList(res)
-      setLoading(false)
+      const res = await postListData(params);
+      setList(res);
+      setLoading(false);
     } catch (err) {
-      console.error(err)
-      setLoading(false)
+      console.error(err);
+      setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
-    getList()
-  }, [params])
+    getList();
+  }, [params]);
 
   return (
     <div style={{ marginBottom: '20px' }}>
       <DateRangePicker onChange={handleDateChange} />
       <Table
         onPageChange={(pageNumber: number) => {
-          dispatch({ payload: { pageNumber }, type: PAGE })
+          dispatch({ payload: { pageNumber }, type: PAGE });
         }}
         list={list}
         // 数据是否正在加载，以此来判断是否需要展示loading
         loading={loading}
       />
     </div>
-  )
-}
+  );
+};
 ```
 
 demo 中展示了日期组件以及包含有分页器的 Table 组件，当日期发生变更，或者分页器发生变更时，我们需要 dispatch 来更新请求参数，从而发送请求。在发送请求时如果正在请求，则忽略，而不在请求时需要手动加锁，来防止多次请求。

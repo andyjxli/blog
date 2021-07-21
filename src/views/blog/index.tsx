@@ -5,11 +5,7 @@ function Blog() {
   console.log(ARTICLE_LISTS);
   const UseFetch = ARTICLE_LISTS[0];
 
-  return (
-    <div>
-      <UseFetch />
-    </div>
-  );
+  return <div dangerouslySetInnerHTML={{ __html: UseFetch }}></div>;
 }
 
 export default Blog;

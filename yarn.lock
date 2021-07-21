@@ -1873,6 +1873,11 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
+highlight.js@^11.1.0:
+  version "11.1.0"
+  resolved "https://registry.nlark.com/highlight.js/download/highlight.js-11.1.0.tgz#0198f7326e64ddfbea5f76b00e84ab542cf24ae8"
+  integrity sha1-AZj3Mm5k3fvqX3awDoSrVCzySug=
+
 history@^4.9.0:
   version "4.10.1"
   resolved "https://registry.nlark.com/history/download/history-4.10.1.tgz#33371a65e3a83b267434e2b3f3b1b4c58aad4cf3"
@@ -2397,7 +2402,7 @@ map-obj@^4.0.0:
   resolved "https://registry.npm.taobao.org/map-obj/download/map-obj-4.2.1.tgz?cache=0&sync_timestamp=1617771296262&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fmap-obj%2Fdownload%2Fmap-obj-4.2.1.tgz#e4ea399dbc979ae735c83c863dd31bdf364277b7"
   integrity sha1-5Oo5nbyXmuc1yDyGPdMb3zZCd7c=
 
-markdown-it@^12.0.0:
+markdown-it@^12.0.0, markdown-it@^12.1.0:
   version "12.1.0"
   resolved "https://registry.nlark.com/markdown-it/download/markdown-it-12.1.0.tgz#7ad572caddd336bd27a68d20e86bac1fafe8fb20"
   integrity sha1-etVyyt3TNr0npo0g6GusH6/o+yA=

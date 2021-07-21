@@ -1,3 +1,3 @@
-import { ReactComponent as useFetch } from './react/useFetch.md';
+import { html as useFetch } from './react/useFetch.md';
 
-export const ARTICLE_LISTS: React.VFC[] = [useFetch];
+export const ARTICLE_LISTS: string[] = [useFetch];
