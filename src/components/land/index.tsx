@@ -1,5 +1,4 @@
 import React from 'react';
-import './index.less';
 
 interface LandProps {
   title: string;

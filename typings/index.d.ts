@@ -1,11 +1,17 @@
 interface ArticleAttribute {
-  author: string;
+  authors: {
+    name: string;
+    avatar: string;
+    about?: { title: string; link: string }[];
+  }[];
+  description: string;
   category: { title: string; name: string };
   date: string;
   thumb: string;
-  tags: string[];
+  tags: { title: string; name: string }[];
   title: string;
   time: string;
+  update?: string;
 }
 type ArticleTopic = { level: string; content: string }[];
 

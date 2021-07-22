@@ -1,12 +1,23 @@
 ---
 title: useFetch
-image: img/xiyizhou.jpg
-author: andyjxli
-date: 2019-03-10T10:00:00.000Z
-draft: false
-tags:
-  - Time
+thumb: https://web-dev.imgix.net/image/0SXGYLkliuPQY3aSy3zWvdv7RqG2/KvZQXFKIGKEzAjxzf5bF.jpg?fit=crop&h=240&w=354&auto=format&dpr=2&q=50
+authors:
+  [
+    {
+      name: Andyjx Li,
+      avatar: 'https://lh3.googleusercontent.com/a-/AOh14GhVfBena_EIWoZ93WX76STNMrpMt91EPalUROfh=s96-c',
+      about:
+        [
+          { title: Github, link: 'https://github.com/andyjxli' },
+          { title: Twitter, link: https://twitter.com/cuteblackcat9 },
+        ],
+    },
+  ]
+date: 2019-03-10
+update: 2020-06-12
+tags: [{ title: 'React', name: 'react' }]
 category: { title: '前端', name: 'frontend' }
+description: '如何使用 React Hooks 优雅的发送请求'
 ---
 
 ## 前言
