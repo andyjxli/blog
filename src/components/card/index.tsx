@@ -7,7 +7,7 @@ interface CardProps {
 }
 
 function Card({ article }: CardProps) {
-  const { time, title, authors, description, thumb, tags } = article.attributes;
+  const { date, title, authors, description, thumb, tags } = article.attributes;
 
   return (
     <div className="w-card">
@@ -44,7 +44,7 @@ function Card({ article }: CardProps) {
                   ))}
                 </span>
                 <div className="w-author__published">
-                  <time>{dayjs(time).format('YYYY-MM-DD')}</time>
+                  <time>{dayjs(date).format('YYYY-MM-DD')}</time>
                 </div>
               </div>
             </div>

@@ -1,13 +1,23 @@
 ---
-layout: post
 title: useIntersectionObserver
-image: img/xiyizhou.jpg
-author: XiYiZi
-date: 2019-03-10T10:00:00.000Z
-draft: false
-tags:
-  - Time
+date: 2019-03-10
+tags: [{ title: 'React', name: 'react' }]
 category: { title: '前端', name: 'frontend' }
+thumb: https://web-dev.imgix.net/image/STd8eW8CSiNp5B1bX0R6Dww2eH32/KwcWeCZ6LoIfTLRgVxp4.png?fit=crop&h=240&w=354&auto=format&dpr=2&q=50
+authors:
+  [
+    {
+      name: Andyjx Li,
+      avatar: 'https://lh3.googleusercontent.com/a-/AOh14GhVfBena_EIWoZ93WX76STNMrpMt91EPalUROfh=s96-c',
+      about:
+        [
+          { title: Github, link: 'https://github.com/andyjxli' },
+          { title: Twitter, link: https://twitter.com/cuteblackcat9 },
+        ],
+    },
+  ]
+update: 2020-06-12
+description: '使用 React Hooks 优雅的监听 DOM 元素曝光'
 ---
 
 ## 前言
@@ -36,32 +46,32 @@ category: { title: '前端', name: 'frontend' }
 // useIntersectionObserver.ts
 // 定义参数函数类型以及返回值类型
 
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect } from 'react';
 
-type NumberList = number[]
-type ObserverList = Array<React.RefObject<any>>
-type CallbackFunction = (indexList: NumberList) => void
-type ResultType = [React.Dispatch<React.SetStateAction<React.RefObject<any>[]>>]
+type NumberList = number[];
+type ObserverList = Array<React.RefObject<any>>;
+type CallbackFunction = (indexList: NumberList) => void;
+type ResultType = [React.Dispatch<React.SetStateAction<React.RefObject<any>[]>>];
 
 function UseIntersectionObserver(
   observerList: ObserverList,
   callback: CallbackFunction,
   infinite: boolean = false,
-  opt: IntersectionObserverInit = {}
+  opt: IntersectionObserverInit = {},
 ): ResultType {
   // list 为需要监听的元素列表。setList做为UseIntersectionObserver函数的返回值，可以让调用者修改需要监听的 list
-  const [list, setList] = useState<ObserverList>(observerList)
+  const [list, setList] = useState<ObserverList>(observerList);
 
   // intersectionObserver： 观察者对象
-  let intersectionObserver: IntersectionObserver | null = null
+  let intersectionObserver: IntersectionObserver | null = null;
 
   // ...
-  return [setList]
+  return [setList];
 }
 
-const useIntersectionObserver = UseIntersectionObserver
+const useIntersectionObserver = UseIntersectionObserver;
 
-export default useIntersectionObserver
+export default useIntersectionObserver;
 ```
 
 UseIntersectionObserver 函数参数：
@@ -82,7 +92,7 @@ UseIntersectionObserver 返回值:
 ```typescript
 // UseIntersectionObserver
 
-const observeExposure = useCallback((list: ObserverList) => {}, [])
+const observeExposure = useCallback((list: ObserverList) => {}, []);
 ```
 
 使用 useCallback 减少不必要的重复函数声明
@@ -91,9 +101,9 @@ const observeExposure = useCallback((list: ObserverList) => {}, [])
 
 ```typescript
 if (typeof IntersectionObserver === 'undefined') {
-  throw new Error('Current browser does not support IntersectionObserver ')
+  throw new Error('Current browser does not support IntersectionObserver ');
 }
-if (list.length === 0) return
+if (list.length === 0) return;
 ```
 
 - 目标主流浏览器都已经支持该对象，但是还是兼容一些低版本浏览器
@@ -103,41 +113,41 @@ if (list.length === 0) return
 
 ```typescript
 // 当观察者存在时销毁该对象
-intersectionObserver && intersectionObserver.disconnect()
+intersectionObserver && intersectionObserver.disconnect();
 // 构造新的观察者实例
-intersectionObserver = new IntersectionObserver(entries => {
+intersectionObserver = new IntersectionObserver((entries) => {
   // 保存本次监听被曝光的元素
-  let activeList: NumberList = []
+  let activeList: NumberList = [];
 
   // 递归每一个本次被监听对象，如果按照曝光条件出现在可视区，则调用callback函数，并且取消监听
-  entries.forEach(entrie => {
+  entries.forEach((entrie) => {
     // 找出本次被监听对象在list中的索引
-    const index = Array.from(list).findIndex(item => item.current === entrie.target)
+    const index = Array.from(list).findIndex((item) => item.current === entrie.target);
     // 防止意外发生
-    if (index === -1) return
+    if (index === -1) return;
 
     // isIntersecting是每个被监听的元素所自带的属性，若为ture，则表示被曝光
     // 并且未被曝光过
     if (entrie.isIntersecting) {
       // 保存本次曝光元素索引
-      activeList.push(index)
+      activeList.push(index);
 
       // 解除观察， 若需要无限观察则不取消监听
-      !infinite && intersectionObserver && intersectionObserver.unobserve(list[index].current)
+      !infinite && intersectionObserver && intersectionObserver.unobserve(list[index].current);
     }
-  })
+  });
 
   // callback函数
-  activeList.length > 0 && callback(activeList)
-}, opt)
+  activeList.length > 0 && callback(activeList);
+}, opt);
 ```
 
 > 使用 intersectionObserver 监听 list 中的元素
 
 ```typescript
 // 递归观察每一个元素
-list.forEach(item => {
-  item.current && intersectionObserver && intersectionObserver.observe(item.current)
+list.forEach((item) => {
+  item.current && intersectionObserver && intersectionObserver.observe(item.current);
 
   // 可以兼容直接传入DOM节点。
   // if((<React.RefObject<any>>item).current) {
@@ -145,31 +155,31 @@ list.forEach(item => {
   // } else if ((<HTMLElement>item)) {
   //   intersectionObserver.observe((<HTMLElement>item))
   // }
-})
+});
 ```
 
 #### 3. 当每次被暴露的 setList 被调用时会使 list 被改变，此时需要重新监听
 
 ```typescript
 useEffect(() => {
-  observeExposure(list)
+  observeExposure(list);
 
   // 当 umount 时取消链接
   return () => {
-    intersectionObserver && intersectionObserver.disconnect()
-  }
-}, [list])
+    intersectionObserver && intersectionObserver.disconnect();
+  };
+}, [list]);
 ```
 
 #### 4. 完整代码实现
 
 ```typescript
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect } from 'react';
 
-type NumberList = number[]
-type ObserverList = Array<React.RefObject<any>>
-type CallbackFunction = (indexList: NumberList) => void
-type ResultType = [React.Dispatch<React.SetStateAction<React.RefObject<any>[]>>]
+type NumberList = number[];
+type ObserverList = Array<React.RefObject<any>>;
+type CallbackFunction = (indexList: NumberList) => void;
+type ResultType = [React.Dispatch<React.SetStateAction<React.RefObject<any>[]>>];
 
 /**
  * UseIntersectionObserver
@@ -182,50 +192,50 @@ function UseIntersectionObserver(
   observerList: ObserverList,
   callback: CallbackFunction,
   infinite: boolean = false,
-  opt: IntersectionObserverInit = {}
+  opt: IntersectionObserverInit = {},
 ): ResultType {
   // list 为需要监听的元素列表。setList做为UseIntersectionObserver函数的返回值，可以让调用者修改需要监听的 list
-  const [list, setList] = useState<ObserverList>(observerList)
+  const [list, setList] = useState<ObserverList>(observerList);
 
   // intersectionObserver： 观察者对象
-  let intersectionObserver: IntersectionObserver | null = null
+  let intersectionObserver: IntersectionObserver | null = null;
 
   const observeExposure = useCallback((list: ObserverList) => {
     if (!IntersectionObserver) {
-      throw new Error('Current browser does not support IntersectionObserver ')
+      throw new Error('Current browser does not support IntersectionObserver ');
     }
-    if (list.length === 0) return
+    if (list.length === 0) return;
     // 当观察者存在时销毁该对象
-    intersectionObserver && intersectionObserver.disconnect()
+    intersectionObserver && intersectionObserver.disconnect();
     // 构造新的观察者实例
-    intersectionObserver = new IntersectionObserver(entries => {
+    intersectionObserver = new IntersectionObserver((entries) => {
       // 保存本次监听被曝光的元素
-      let activeList: NumberList = []
+      let activeList: NumberList = [];
 
       // 递归每一个本次被监听对象，如果按照曝光条件出现在可视区，则调用callback函数，并且取消监听
-      entries.forEach(entrie => {
+      entries.forEach((entrie) => {
         // 找出本次被监听对象在list中的索引
-        const index = Array.from(list).findIndex(item => item.current === entrie.target)
+        const index = Array.from(list).findIndex((item) => item.current === entrie.target);
         // 防止意外发生
-        if (index === -1) return
+        if (index === -1) return;
 
         // isIntersecting是每个被监听的元素所自带的属性，若为ture，则表示被曝光
         // 并且未被曝光过
         if (entrie.isIntersecting) {
           // 保存本次曝光元素索引
-          activeList.push(index)
+          activeList.push(index);
 
           // 解除观察， 若需要无限观察则不取消监听
-          !infinite && intersectionObserver && intersectionObserver.unobserve(list[index].current)
+          !infinite && intersectionObserver && intersectionObserver.unobserve(list[index].current);
         }
-      })
+      });
 
       // callback函数
-      activeList.length > 0 && callback(activeList)
-    }, opt)
+      activeList.length > 0 && callback(activeList);
+    }, opt);
 
-    list.forEach(item => {
-      item.current && intersectionObserver && intersectionObserver.observe(item.current)
+    list.forEach((item) => {
+      item.current && intersectionObserver && intersectionObserver.observe(item.current);
 
       // 可以兼容直接传入DOM节点。
       // if((<React.RefObject<any>>item).current) {
@@ -233,24 +243,24 @@ function UseIntersectionObserver(
       // } else if ((<HTMLElement>item)) {
       //   intersectionObserver.observe((<HTMLElement>item))
       // }
-    })
-  }, [])
+    });
+  }, []);
 
   useEffect(() => {
-    observeExposure(list)
+    observeExposure(list);
 
     // 当 umount 时取消链接
     return () => {
-      intersectionObserver && intersectionObserver.disconnect()
-    }
-  }, [list])
+      intersectionObserver && intersectionObserver.disconnect();
+    };
+  }, [list]);
 
-  return [setList]
+  return [setList];
 }
 
-const useIntersectionObserver = UseIntersectionObserver
+const useIntersectionObserver = UseIntersectionObserver;
 
-export default useIntersectionObserver
+export default useIntersectionObserver;
 ```
 
 <br>
@@ -260,40 +270,40 @@ export default useIntersectionObserver
 > 实现一个简单的商品列表曝光打点的案例
 
 ```typescript
-import Card from 'components/goods-card/goods-card'
-import { connect } from 'react-redux'
-import { getSinglePromotionList } from '../../page_components/promotion/redux/creator'
-import React, { useEffect, useState, useCallback } from 'react'
-import useIntersectionObserver from 'page_components/promotion/useIntersectionObserver'
+import Card from 'components/goods-card/goods-card';
+import { connect } from 'react-redux';
+import { getSinglePromotionList } from '../../page_components/promotion/redux/creator';
+import React, { useEffect, useState, useCallback } from 'react';
+import useIntersectionObserver from 'page_components/promotion/useIntersectionObserver';
 
 const List = (props: { info: any; getData: any }) => {
-  const { info, getData } = props
+  const { info, getData } = props;
 
   // 被监听元素的列表
-  const [refList, setRefList] = useState<React.RefObject<any>[]>([])
+  const [refList, setRefList] = useState<React.RefObject<any>[]>([]);
 
   const callback = useCallback((indexList: number[]) => {
-    console.log(indexList)
-  }, [])
+    console.log(indexList);
+  }, []);
 
   // 调用
-  const [setList] = useIntersectionObserver(refList, callback)
+  const [setList] = useIntersectionObserver(refList, callback);
 
   // 当refList发生改变时，调用我们的Hook返回的方法以更新需要监听的元素
   useEffect(() => {
-    setList(refList)
-  }, [refList])
+    setList(refList);
+  }, [refList]);
 
   // 当数据发生改变时，重新生成RefList
   useEffect(() => {
-    const list: React.RefObject<any>[] = info.list.map(() => React.createRef())
-    setRefList(list)
-  }, [info])
+    const list: React.RefObject<any>[] = info.list.map(() => React.createRef());
+    setRefList(list);
+  }, [info]);
 
   // 发送请求，获取商品数据
   useEffect(() => {
-    getData()
-  }, [])
+    getData();
+  }, []);
 
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap' }}>
@@ -303,23 +313,23 @@ const List = (props: { info: any; getData: any }) => {
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
 const mapStateToProps = (state: any) => {
   return {
     info: state.promotionStore.singlePromotionInfo,
-    userInfo: state.userInfo
-  }
-}
+    userInfo: state.userInfo,
+  };
+};
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    getData: () => dispatch(getSinglePromotionList(params, silence))
-  }
-}
+    getData: () => dispatch(getSinglePromotionList(params, silence)),
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(List)
+export default connect(mapStateToProps, mapDispatchToProps)(List);
 ```
 
 > 案例效果

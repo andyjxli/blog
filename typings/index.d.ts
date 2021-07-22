@@ -10,7 +10,6 @@ interface ArticleAttribute {
   thumb: string;
   tags: { title: string; name: string }[];
   title: string;
-  time: string;
   update?: string;
 }
 type ArticleTopic = { level: string; content: string }[];
