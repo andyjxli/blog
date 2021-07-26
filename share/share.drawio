@@ -1,0 +1,55 @@
+<mxfile host="65bd71144e">
+    <diagram id="xAdXdXoiM4mJgfpyJfDe" name="第 1 页">
+        <mxGraphModel dx="891" dy="1747" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;opacity=70;" vertex="1" parent="1">
+                    <mxGeometry x="50" y="-290" width="770" height="360" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;opacity=60;" vertex="1" parent="1">
+                    <mxGeometry x="300" y="-235" width="490" height="265" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="Options" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="323.5" y="-170" width="180" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="Rollup" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontSize=16;" vertex="1" parent="1">
+                    <mxGeometry x="440" y="-220" width="160" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="buildStart" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="323.5" y="-110" width="180" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="resolved" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="550" y="-170" width="180" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="load" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="550" y="-110" width="180" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="transform" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="324" y="-50" width="180" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="......" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="550" y="-50" width="180" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="Vite" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;fontSize=16;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="-270" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="config" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="-210" width="180" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="configResolved" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="-160" width="180" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="transformindexhtml" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="-60" width="180" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="configureserver" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="-110" width="180" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="handlehotupdate" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="-10" width="180" height="40" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
