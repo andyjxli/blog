@@ -5,12 +5,14 @@ interface ArticleAttribute {
     about?: { title: string; link: string }[];
   }[];
   description: string;
-  category: { title: string; name: string };
+  category: { title: string; name: string }[];
   date: string;
   thumb: string;
   tags: { title: string; name: string }[];
   title: string;
   update?: string;
+  // 所属领域
+  domain: { title: string; name: string };
 }
 type ArticleTopic = { level: string; content: string }[];
 

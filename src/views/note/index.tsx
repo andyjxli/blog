@@ -1,6 +1,10 @@
 import React from 'react';
 import dayjs from 'dayjs';
 import Land from '@/components/land';
+import { getAllArticle } from '@/articles';
+import { DEFAULT_DOMAINS } from './constant';
+import { articlesClassification } from './logic';
+import { Link } from 'react-router-dom';
 
 const TEXT = [
   '珍惜人生路上的点点滴滴，人的一生，再是烂漫辉煌，终会有落樱缤纷，残红善舞。本来是灿烂过的，因此不怕被遗忘；本来是热烈过的，因此甘于安守，一份不可言喻的静默。',
@@ -11,11 +15,47 @@ const TEXT = [
   '冷静的平和的内涵。平和的人，其玄机在一个“静”字，“猝然临之而不惊，无故加之而不怒”，冷静处人，理智处事，身放闲处，心在静中。',
   '岁月静好，现世安稳。生活如草生堤堰，叶生树梢，自然便好。',
 ];
-console.log();
+
 function Note() {
+  const articles = getAllArticle();
+
+  const renderList = articlesClassification(DEFAULT_DOMAINS, articles);
+
   return (
     <div>
       <Land title="Note" description={TEXT[(dayjs().day() % 5) - 1]} />
+      <div>
+        {renderList.map((item) => (
+          <section className="w-grid" key={item.name}>
+            <div className="w-grid__columns w-grid__columns--gapless w-grid__columns--three">
+              <h3 className="w-learn-heading">{item.title}</h3>
+            </div>
+            <div className="w-grid__columns w-grid__columns--gapless w-grid__columns--three">
+              {item.category.map((item) => (
+                <Link key={item.name} to={`/category/${item.name}`}>
+                  <div className="w-path-card">
+                    <div className="w-path-card__info">
+                      <ul className="w-path-card__info-list">
+                        <li className="w-path-card__info-listitem w-path-card__info-listitem--category">Collection</li>
+                        <li className="w-path-card__info-listitem w-path-card__info-listitem--more-info">
+                          {item.article.length} resources
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="w-path-card__cover">
+                      <img src={item.cover} className="w-path-card__cover-image" height="240" loading="lazy" alt="" />
+                    </div>
+                    <div className="w-path-card__desc">
+                      <h2 className="w-path-card__headline">{item.title}</h2>
+                      <p className="w-path-card__subhead">{item.description}</p>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
     </div>
   );
 }

@@ -8,6 +8,7 @@ interface CardProps {
 
 function Card({ article }: CardProps) {
   const { date, title, authors, description, thumb, tags } = article.attributes;
+  const renderTags = Array.isArray(tags) ? tags : [tags];
 
   return (
     <div className="w-card">
@@ -51,7 +52,7 @@ function Card({ article }: CardProps) {
             <div className="w-card-base__desc">
               <p className="w-card-base__subhead">{description}</p>
               <div className="w-card__chips w-chips">
-                {tags?.map((tag) => (
+                {renderTags?.map((tag) => (
                   <Link key={tag.name} className="w-chip" to={`/tags/${tag.name}`}>
                     {tag.title}
                   </Link>

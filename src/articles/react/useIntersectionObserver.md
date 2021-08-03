@@ -1,8 +1,10 @@
 ---
 title: useIntersectionObserver
 date: 2019-03-10
-tags: [{ title: 'React', name: 'react' }]
-category: { title: '前端', name: 'frontend' }
+tags: [{ title: 'react hooks', name: 'react-hooks' }]
+category: [{ title: 'React', name: 'react' }]
+domain: { title: '前端', name: 'frontend' }
+description: '使用 React Hooks 优雅的监听 DOM 元素曝光'
 thumb: https://web-dev.imgix.net/image/STd8eW8CSiNp5B1bX0R6Dww2eH32/KwcWeCZ6LoIfTLRgVxp4.png?fit=crop&h=240&w=354&auto=format&dpr=2&q=50
 authors:
   [
@@ -17,7 +19,6 @@ authors:
     },
   ]
 update: 2020-06-12
-description: '使用 React Hooks 优雅的监听 DOM 元素曝光'
 ---
 
 ## 前言

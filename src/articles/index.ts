@@ -14,3 +14,5 @@ export const ARTICLE_LISTS = [createUUIDArticle(useFetch), createUUIDArticle(use
 
 export const findArticleByUUid = (uuid: string) => ARTICLE_LISTS.find((item) => item.uuid === uuid);
 export const getAllArticle = () => ARTICLE_LISTS;
+export const findArticleByTags = (tagName?: string) =>
+  tagName ? ARTICLE_LISTS.filter((item) => item.attributes.tags.find((tag) => tagName === tag.name)) : getAllArticle();

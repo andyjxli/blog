@@ -19,6 +19,10 @@ const routes: RouteConfig[] = [
         component: Blog,
       },
       {
+        path: '/tags/:tag',
+        component: Blog,
+      },
+      {
         path: '/',
         component: Home,
       },

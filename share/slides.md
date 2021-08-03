@@ -22,13 +22,14 @@ info: |
 # Vite 2.0 原理浅析
 
 分享人：andyjxli
-<!-- 
+
+<!--
 <div class="pt-12">
   <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
     Press Space for next page <carbon:arrow-right class="inline"/>
   </span>
 </div> -->
-<!-- 
+<!--
 <div class="abs-br m-6 flex gap-2">
   <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="text-xl icon-btn opacity-50 !border-none !hover:text-white">
     <carbon:edit />
@@ -38,7 +39,6 @@ info: |
     <carbon-logo-github />
   </a>
 </div> -->
-
 
 <!--
 The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
@@ -54,10 +54,10 @@ Vite (法语意为 "快速的"，发音 /vit/) 是一种新型前端构建工具
 - **一套构建指令** 它使用 Rollup 打包你的代码，并且它是预配置的，可输出用于生产环境的高度优化过的静态资源。
 
 ### 特性
+
 - 极速的服务启动
 - 轻量快速的热重载
 - 按需编译
-
 
 Read more about [what is Vite?](https://cn.vitejs.dev/)
 
@@ -85,7 +85,7 @@ h1 {
       <li style="margin-left: 0">2. 构建 JS bundle</li>
       <li style="margin-left: 0">3. 服务启动</li>
     </ul>
-    <img style="margin-top: 20px" width="500" border="rounded" src="https://ask.qcloudimg.com/http-save/yehe-6282273/e99t6der6y.png?imageView2/2/w/1620">
+    <img style="margin-top: 20px" width="500" border="rounded" src="https://cdn.learnku.com/uploads/images/202102/25/73306/t9jlmgTsE5.png!large">
   </div>
   <div class="aaa">
     <h3>Vite</h3>
@@ -94,7 +94,7 @@ h1 {
       <li style="margin-left: 0">2. 路由、依赖分析</li>
       <li style="margin-left: 0">3. 加载模块</li>
     </ul>
-    <img style="margin-top: 20px" width="500" border="rounded" src="https://ask.qcloudimg.com/http-save/yehe-6282273/9662keq8h2.png?imageView2/2/w/1620">
+    <img style="margin-top: 20px" width="500" border="rounded" src="https://cdn.learnku.com/uploads/images/202102/25/73306/bTd3oVDMlg.png!large">
   </div>
 </div>
 
@@ -106,7 +106,7 @@ h1 {
 
 <div>
 
-```ts {2,6,10-17,24-28}
+```ts
 // 本地开发
 yarn dev
 
@@ -133,27 +133,24 @@ cli.action(async (root: string, options: ServerOptions & GlobalCLIOptions) => {
 ```
 
 Read more about [Vite start](https://github.com/vitejs/vite/blob/main/packages/vite/src/node/cli.ts#L82)
+
 </div>
 <div>
 
-
-```ts {4|5|6|7|8|9|11-14}
-export async function createServer(
-  inlineConfig: InlineConfig = {}
-): Promise<ViteDevServer> {
-   const config = await resolveConfig(inlineConfig, 'serve', 'development')
-   const httpServer = await resolveHttpServer(serverConfig, middlewares, httpsOptions)
-   const ws = createWebSocketServer(httpServer, config, httpsOptions)
-   const watcher = chokidar.watch(path.resolve(root))
-   const container = await createPluginContainer(config, watcher)
-   const moduleGraph = new ModuleGraph(container)
+```ts {2|3|4|5|6|7|9-12}
+export async function createServer(inlineConfig: InlineConfig = {}): Promise<ViteDevServer> {
+  const config = await resolveConfig(inlineConfig, 'serve', 'development');
+  const httpServer = await resolveHttpServer(serverConfig, middlewares, httpsOptions);
+  const ws = createWebSocketServer(httpServer, config, httpsOptions);
+  const watcher = chokidar.watch(path.resolve(root));
+  const container = await createPluginContainer(config, watcher);
+  const moduleGraph = new ModuleGraph(container);
 
   httpServer.listen = (async (port: number, ...args: any[]) => {
-        await container.buildStart({})
-        await runOptimize()
-    }) as any
+    await container.buildStart({});
+    await runOptimize();
+  }) as any;
 }
-
 ```
 
 ```ts
@@ -165,13 +162,13 @@ export async function createServer(
 6. 创建依赖关系
 
 ```
+
 </div>
 </div>
 
 ---
 
 # 依赖预编译 runOptimize
-
 
 <div grid="~ cols-2 gap-4">
 <div>
@@ -186,21 +183,22 @@ export async function createServer(
 rumOptimize 内部
 
 ```ts
-let deps: Record<string, string>, missing: Record<string, string>
+let deps: Record<string, string>, missing: Record<string, string>;
 if (!newDeps) {
-  ;({ deps, missing } = await scanImports(config))
+  ({ deps, missing } = await scanImports(config));
 }
 ```
 
 scanImports 扫描所有需要预编译的文件
+
 ```ts
-import {  build } from 'esbuild'
+import { build } from 'esbuild';
 
 export async function scanImports(config: ResolvedConfig): Promise<{
-  deps: Record<string, string>
-  missing: Record<string, string>
+  deps: Record<string, string>;
+  missing: Record<string, string>;
 }> {
-  let entries = await globEntries('**/*.html', config)
+  let entries = await globEntries('**/*.html', config);
 
   await Promise.all(
     entries.map((entry) =>
@@ -208,10 +206,10 @@ export async function scanImports(config: ResolvedConfig): Promise<{
         entryPoints: [entry],
         bundle: true,
         plugins: [...plugins, plugin],
-        ...esbuildOptions
-      })
-    )
-  )
+        ...esbuildOptions,
+      }),
+    ),
+  );
 }
 ```
 
@@ -230,33 +228,33 @@ export async function scanImports(config: ResolvedConfig): Promise<{
 <p>1. CommonJS 和 UMD 兼容性:</p>
 
 ```js
-import {
-  require_react
-} from "./chunk-KO7G7YGB.js";
-import "./chunk-R6I3GLEQ.js";
+import { require_react } from './chunk-KO7G7YGB.js';
+import './chunk-R6I3GLEQ.js';
 
 // dep:react
 var react_default = require_react();
-export {
-  react_default as default
-};
+export { react_default as default };
 ```
+
 将作为 CommonJS 或 UMD 发布的依赖项转换为 ESM。
+
 </div>
 
 <div>
 <p>提升加载性能</p>
 
-
 ```ts
-import { debounce } from 'lodash'
+import { debounce } from 'lodash';
 ```
 
 <br />
 
-<img border="rounded" src="https://ask.qcloudimg.com/http-save/yehe-6282273/ppt18a19wd.png?imageView2/2/w/1620">
+<img border="rounded" src="https://cdn.learnku.com/uploads/images/202102/25/73306/fyW62hlyJf.png!large">
 
 <p>lodash 有600多个内置模块</p>
+
+[esbuild](https://github.com/evanw/esbuild#why)
+
 </div>
 </div>
 
@@ -283,32 +281,32 @@ import { debounce } from 'lodash'
 ```ts
 // createServer
 
-const watcher = chokidar.watch(path.resolve(root))
-const moduleGraph = new ModuleGraph(container)
+const watcher = chokidar.watch(path.resolve(root));
+const moduleGraph = new ModuleGraph(container);
 
 const server: ViteDevServer = {
   ws,
   // ...
-}
+};
 
 // 文件更新
 watcher.on('change', async (file) => {
-  file = normalizePath(file)
-  moduleGraph.onFileChange(file)
-  await handleHMRUpdate(file, server)
-})
+  file = normalizePath(file);
+  moduleGraph.onFileChange(file);
+  await handleHMRUpdate(file, server);
+});
 // 新增文件
-watcher.on('add', (file) => handleFileAddUnlink(normalizePath(file), server))
+watcher.on('add', (file) => handleFileAddUnlink(normalizePath(file), server));
 // 移除文件
-watcher.on('unlink', (file) => handleFileAddUnlink(normalizePath(file), server, true))
-
+watcher.on('unlink', (file) => handleFileAddUnlink(normalizePath(file), server, true));
 ```
 
 </div>
 
 <div>
 
-#### 
+####
+
 > 每个文件都有一个模块依赖集合来解释当前模块的依赖关系，例如 main.tsx:
 
 <br />
@@ -329,36 +327,32 @@ watcher.on('unlink', (file) => handleFileAddUnlink(normalizePath(file), server, 
 <p>当文件被修改、删除、添加时</p>
 
 ```ts {1-3,11-22,23-27}
-moduleGraph.onFileChange(file)
-updateModules(shortFile, hmrContext.modules, timestamp, server)
+moduleGraph.onFileChange(file);
+updateModules(shortFile, hmrContext.modules, timestamp, server);
 
-function updateModules(
-  file: string,
-  modules: ModuleNode[],
-  timestamp: number,
-  { config, ws }: ViteDevServer
-) {
-  const updates: Update[] = []
+function updateModules(file: string, modules: ModuleNode[], timestamp: number, { config, ws }: ViteDevServer) {
+  const updates: Update[] = [];
 
   for (const mod of modules) {
-    const boundaries = new Set<{ boundary: ModuleNode; acceptedVia: ModuleNode}>()
+    const boundaries = new Set<{ boundary: ModuleNode; acceptedVia: ModuleNode }>();
 
     updates.push(
       ...[...boundaries].map(({ boundary, acceptedVia }) => ({
         type: `${boundary.type}-update` as Update['type'],
         timestamp,
         path: boundary.url,
-        acceptedPath: acceptedVia.url
-      }))
-    )
+        acceptedPath: acceptedVia.url,
+      })),
+    );
   }
 
   ws.send({
     type: 'update',
-    updates
-  })
+    updates,
+  });
 }
 ```
+
 </div>
 
 <div style="display:flex;align-items: center;justify-content: center;font-size:18px;color:rgb(184, 169, 101);">
@@ -381,4 +375,20 @@ function updateModules(
 3. 基于 esbuild 的依赖预编译
 4. 更好的 CSS 支持 (通过插件支持)
 5. 服务端渲染 (SSR) 支持
+</div>
+
+---
+
+# 模版使用
+
+<div style="width: 100%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;margin-top:-50px;color:rgb(184, 169, 101)">
+
+[Vite-React-admin](https://git.woa.com/shadow_frontend/vite-react-admin)
+
 </div>
