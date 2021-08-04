@@ -23,6 +23,10 @@ const routes: RouteConfig[] = [
         component: Blog,
       },
       {
+        path: '/category/:category',
+        component: Blog,
+      },
+      {
         path: '/',
         component: Home,
       },

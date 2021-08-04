@@ -16,3 +16,7 @@ export const findArticleByUUid = (uuid: string) => ARTICLE_LISTS.find((item) => 
 export const getAllArticle = () => ARTICLE_LISTS;
 export const findArticleByTags = (tagName?: string) =>
   tagName ? ARTICLE_LISTS.filter((item) => item.attributes.tags.find((tag) => tagName === tag.name)) : getAllArticle();
+export const findArticleByCategory = (category?: string) =>
+  category
+    ? ARTICLE_LISTS.filter((item) => item.attributes.category.find((cate) => category === cate.name))
+    : getAllArticle();

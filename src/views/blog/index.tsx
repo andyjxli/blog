@@ -1,13 +1,13 @@
-import { findArticleByTags } from '@/articles';
+import { findArticleByCategory, findArticleByTags } from '@/articles';
 import Card from '@/components/card';
 import Land from '@/components/land';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
 function Blog() {
-  const { tag } = useParams<{ tag: string }>();
-  const list = findArticleByTags(tag);
-  const title = list[0].attributes.tags.find((item) => tag === item.name)?.title ?? 'Blog';
+  const { tag, category } = useParams<{ tag: string; category: string }>();
+  const list = tag ? findArticleByTags(tag) : findArticleByCategory(category);
+  const title = list[0]?.attributes.tags.find((item) => tag === item.name)?.title ?? 'Blog';
 
   return (
     <div>

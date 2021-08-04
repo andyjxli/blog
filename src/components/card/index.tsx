@@ -39,9 +39,9 @@ function Card({ article }: CardProps) {
               <div className="w-authors__card--holder">
                 <span className="w-author__name">
                   {authors.map((author) => (
-                    <a className="w-author__name-link" key={author.name}>
+                    <span className="w-author__name-link" key={author.name}>
                       {author.name}
-                    </a>
+                    </span>
                   ))}
                 </span>
                 <div className="w-author__published">
