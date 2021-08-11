@@ -18,6 +18,18 @@ export const DEFAULT_DOMAINS = [
       },
     ],
   },
+  {
+    title: '后端',
+    name: 'backend',
+    category: [
+      {
+        title: 'Rust',
+        name: 'rust',
+        description: '一门赋予每个人构建可靠且高效软件能力的语言',
+        cover: 'https://web-dev.imgix.net/image/jxu1OdD7LKOGIDU7jURMpSH2lyK2/khlZd1T1VU3FjmklZY2b.svg',
+      },
+    ],
+  },
 ];
 
 export type DomainsType = typeof DEFAULT_DOMAINS;

@@ -1,6 +1,7 @@
 import { v5 as uuidv5 } from 'uuid';
 import * as useFetch from './react/useFetch.md';
 import * as useIntersectionObserver from './react/useIntersectionObserver.md';
+import * as helloRust from './rust/hello-rust.md';
 
 const createUUIDArticle = (article: Omit<Article, 'uuid'>) => {
   const { title, date } = article.attributes;
@@ -10,7 +11,11 @@ const createUUIDArticle = (article: Omit<Article, 'uuid'>) => {
     uuid: uuidv5(`${title}_${date}`, MY_NAMESPACE),
   };
 };
-export const ARTICLE_LISTS = [createUUIDArticle(useFetch), createUUIDArticle(useIntersectionObserver)];
+export const ARTICLE_LISTS = [
+  createUUIDArticle(useFetch),
+  createUUIDArticle(useIntersectionObserver),
+  createUUIDArticle(helloRust),
+];
 
 export const findArticleByUUid = (uuid: string) => ARTICLE_LISTS.find((item) => item.uuid === uuid);
 export const getAllArticle = () => ARTICLE_LISTS;
