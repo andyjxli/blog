@@ -37,6 +37,20 @@ fn main() {
     } else {
         println!("other three");
     }
+
+    v32()
+}
+
+fn v32() {
+    let v = 0u8;
+    match v {
+        1 => (1),
+        2 => (2),
+        _ => {
+            println!("others {}", v);
+            88
+        }
+    };
 }
 
 fn some_value(value: u8) {

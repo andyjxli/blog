@@ -32,6 +32,14 @@
  * 策略 2: 被调用者保存寄存器，B 在使用值之前保存值，使用完之后返回该值
 */
 
+/**
+ * 操作码 (movq)
+ * 操作数 (%rdi)
+ *  1. 立即数 Immediate ($8)
+ *  2. 寄存器 Register (%rdi)
+ *  3. 内存引用 Memory Reference [(%rdi)]
+ */
+
 long mult2(long, long);
 
 // x -> %rdi \  y -> %rsi \ dest -> %rdx

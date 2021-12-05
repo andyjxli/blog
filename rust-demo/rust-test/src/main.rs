@@ -29,6 +29,7 @@ fn test() {
 fn first_world(s: &String) -> &str {
     let bytes = s.as_bytes();
 
+    // enumerate 遍历返回索引值及其引用
     for (i, &item) in bytes.iter().enumerate() {
         if item == b' ' {
             return &s[0..i];

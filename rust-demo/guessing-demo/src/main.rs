@@ -1,10 +1,5 @@
 /*
- * @Author: andyjxli(李嘉欣)
- * @Date: 2021-08-05 15:32:03
- * @LastEditTime: 2021-11-09 19:46:19
- * @LastEditors: andyjxli(李嘉欣)
  * @Description: 猜数字
- * @FilePath: /blog/rust-demo/guessing-demo/src/main.rs
  */
 use rand::Rng; // trait 类似于接口. sdk.
 use std::cmp::Ordering;

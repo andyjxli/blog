@@ -5,6 +5,7 @@ struct Rectangle {
 }
 
 impl Rectangle {
+    // 方法.
     fn area(&self) -> u32 {
         self.height * self.width
     }
@@ -13,6 +14,7 @@ impl Rectangle {
         self.width > other.width && self.height > other.height
     }
 
+    // 关联函数，类似于静态函数
     fn seuqre(size: u32) -> Rectangle {
         Rectangle {
             width: size,
@@ -21,8 +23,14 @@ impl Rectangle {
     }
 }
 
+// tuple struct
+
+struct Point(u32, u32, u32);
+
 fn main() {
     println!("Hello, world!");
+
+    let point1 = Point(2, 3, 4);
 
     let rect1 = Rectangle {
         width: 50,
@@ -36,7 +44,7 @@ fn main() {
 
     let rect3 = rect1.can_hold(&rect2);
 
-    println!("The rect is {:?}", rect1);
+    println!("The rect is {:#?}", rect1);
 
     println!(
         "The area of the rectangle is {} square pixels.",
