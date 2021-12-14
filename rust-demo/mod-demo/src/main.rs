@@ -8,14 +8,14 @@ fn main() {
 fn valid_braces(s: &str) -> bool {
     let mut stack = Vec::new();
 
-    for i in s[0..s.len()].chars() {
+    for (i, &item) in s.as_bytes().iter().enumerate() {
         let index = stack.len();
         let top = stack[index];
-        if i == "}" && top == "{" {
-            stack.pop()
+        if item == "}" && top == "{" {
+            stack.pop();
             continue;
         }
-    };
+    }
 
     if stack.len() == 0 {
         return true;
