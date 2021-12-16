@@ -1,9 +1,9 @@
 use std::fs::File;
-use std::io::ErrorKind;
+use std::io::{self, ErrorKind, Read, Write};
 
-fn main() {
+fn file_open() {
     let f = File::open("hello.txt");
-    let new_f = match f {
+    match f {
         Ok(file) => file,
         Err(error) => match error.kind() {
             ErrorKind::NotFound => match File::create("hello.txt") {
@@ -14,6 +14,40 @@ fn main() {
         },
     };
 
-    let wrap_f = File::open("hello.txt").unwrap();
-    let exptct_f = File::open("hello.txt").expect("无法打开文件");
+    File::open("hello.txt").unwrap();
+    File::open("hello.txt").expect("无法打开文件");
+}
+
+fn read_username_from_file() -> Result<String, io::Error> {
+    // let f = File::open("hello.txt");
+
+    // let mut f = match f {
+    //     Ok(file) => file,
+    //     Err(error) => return Err(error),
+    // };
+
+    // let mut name = String::new();
+    // match f.read_to_string(&mut name) {
+    //     Ok(_) => Ok(name),
+    //     Err(e) => Err(e),
+    // }
+
+    let mut f = File::open("hello.txt")?;
+    let mut s = String::new();
+    f.read_to_string(&mut s)?;
+    Ok(s)
+}
+
+fn write_file() -> io::Result<()> {
+    let mut file = File::create("foo.txt")?;
+    file.write_all(b"hello world")?;
+    Ok(())
+}
+
+fn main() {
+    file_open();
+    let f = write_file();
+    println!("{:?}", f);
+    let name = read_username_from_file();
+    println!("filename is {:?}", name)
 }
