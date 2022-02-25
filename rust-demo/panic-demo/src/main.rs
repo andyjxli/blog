@@ -1,6 +1,22 @@
 use std::fs::File;
 use std::io::{self, ErrorKind, Read, Write};
 
+fn two_oldest_ages(ages: &[u8]) -> [u8; 2] {
+    let mut result: Vec<u8> = vec![0, 0];
+    for &age in ages {
+        if age > result[0] {
+            if age >= result[1] {
+                result[0] = result[1];
+                result[1] = age;
+            } else {
+                result[0] = age;
+            }
+        }
+    }
+
+    [result[0], result[1]]
+}
+
 fn file_open() {
     let f = File::open("hello.txt");
     match f {
@@ -44,9 +60,14 @@ fn write_file() -> io::Result<()> {
 }
 
 fn main() {
-    file_open();
-    let f = write_file();
-    println!("{:?}", f);
-    let name = read_username_from_file();
-    println!("filename is {:?}", name)
+    assert_eq!(two_oldest_ages(&[1, 5, 87, 45, 8, 8]), [45, 87]);
+    assert_eq!(two_oldest_ages(&[6, 5, 83, 5, 3, 18]), [18, 83]);
+    assert_eq!(two_oldest_ages(&[10, 1]), [1, 10]);
+    assert_eq!(two_oldest_ages(&[1, 3, 10, 0]), [3, 10]);
+
+    // file_open();
+    // let f = write_file();
+    // println!("{:?}", f);
+    // let name = read_username_from_file();
+    // println!("filename is {:?}", name)
 }
