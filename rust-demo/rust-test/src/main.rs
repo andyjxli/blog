@@ -1,17 +1,21 @@
+mod lc_offer_40;
+
 fn main() {
-    let s1 = String::from("hello");
+    let res = lc_offer_40::Solution::get_least_numbers(vec![2, 3, 5, 2, 6, 0, 9, 5], 2);
+    println!("{:?}", res);
+    // let s1 = String::from("hello");
 
-    let len = calcalate_length(&s1);
-    println!("The length of '{}' is {}.", s1, len);
+    // let len = calcalate_length(&s1);
+    // println!("The length of '{}' is {}.", s1, len);
 
-    // let s2 = s1;
-    // println!("{}", s1);
+    // // let s2 = s1;
+    // // println!("{}", s1);
 
-    test();
+    // test();
 
-    let hello = first_world(&s1);
+    // let hello = first_world(&s1);
 
-    println!("hello: {}", hello);
+    // println!("hello: {}", hello);
 }
 
 fn calcalate_length(s: &String) -> usize {
