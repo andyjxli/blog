@@ -25,7 +25,7 @@ var lengthOfLongestSubstring = function (s) {
   let right = 1;
   while (left < len && right < len) {
     const index = s.slice(left, right).indexOf(s[right]);
-    right++;
+    ++right;
     if (index > -1) {
       left += index + 1;
     } else {
