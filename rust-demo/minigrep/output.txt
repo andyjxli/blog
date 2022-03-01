@@ -1,0 +1,5 @@
+case_sensitive: true
+query: frog
+filename: poem.txt
+The file content is: "I'm nobody! Who are you?\nAre you nobody, too?\nThen there's a pair of us - don't tell!\nThey'd banish us, you know.\n\nHow dreary to be somebody!\nHow public, like a frog\nTo tell your name the livelong day\nTo an admiring bog!"
+How public, like a frog
